@@ -7,6 +7,10 @@
 .USAGE.md
 .TROUBLESHOOTING.md
 
+# Ignore user-specific files
+USER.md
+subtasks.md
+
 # Python virtual environment
 venv/
 env/
