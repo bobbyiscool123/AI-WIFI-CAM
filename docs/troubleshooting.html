@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Troubleshooting - AI WiFi CAM</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <img src="images/logo.svg" alt="AI WiFi CAM Logo" onerror="this.src='https://via.placeholder.com/40x40?text=AI';this.onerror=null;">
+                <h1>AI WiFi CAM</h1>
+            </a>
+            <button class="mobile-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="installation.html">Installation</a></li>
+                <li><a href="usage.html">Usage</a></li>
+                <li><a href="troubleshooting.html" class="active">Troubleshooting</a></li>
+                <li><a href="qa.html">Q&A</a></li>
+            </ul>
+            <button class="theme-toggle" title="Toggle dark/light mode">
+                <i class="fas fa-moon"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Troubleshooting Guide</h1>
+            <p>
+                Solutions to common issues and problems with the AI WiFi CAM system
+            </p>
+        </div>
+    </section>
+
+    <!-- Documentation Section -->
+    <section class="documentation">
+        <div class="container">
+            <div class="doc-container">
+                <aside class="doc-sidebar">
+                    <h3>Contents</h3>
+                    <ul>
+                        <li><a href="#esp32-issues">ESP32-CAM Issues</a></li>
+                        <li><a href="#connection-issues">Connection Issues</a></li>
+                        <li><a href="#software-issues">PC Software Issues</a></li>
+                        <li><a href="#ai-issues">AI Processing Issues</a></li>
+                        <li><a href="#performance-issues">Performance Issues</a></li>
+                        <li><a href="#web-interface-issues">Web Interface Issues</a></li>
+                        <li><a href="#advanced-troubleshooting">Advanced Troubleshooting</a></li>
+                    </ul>
+                </aside>
+                
+                <main class="doc-content">
+                    <h2 id="esp32-issues">ESP32-CAM Issues</h2>
+                    <p>
+                        Issues related to the ESP32-CAM hardware and firmware.
+                    </p>
+                    
+                    <div class="faq-item active">
+                        <div class="faq-question">
+                            <h3>Cannot upload sketch to ESP32-CAM</h3>
+                            <span class="faq-toggle"><i class="fas fa-chevron-down"></i></span>
+                        </div>
+                        <div class="faq-answer">
+                            <p><strong>Symptoms:</strong> Arduino IDE shows error messages when trying to upload the sketch.</p>
+                            <p><strong>Possible causes:</strong></p>
+                            <ul>
+                                <li>GPIO0 not connected to GND during flashing</li>
+                                <li>Incorrect board selection in Arduino IDE</li>
+                                <li>Wrong port selection</li>
+                                <li>Faulty connection between ESP32-CAM and FTDI programmer</li>
+                            </ul>
+                            <p><strong>Solutions:</strong></p>
+                            <ol>
+                                <li>Make sure GPIO0 is connected to GND during flashing</li>
+                                <li>Select "AI Thinker ESP32-CAM" in the Arduino IDE board manager</li>
+                                <li>Check that you've selected the correct port in Arduino IDE</li>
+                                <li>Verify all connections between ESP32-CAM and FTDI programmer</li>
+                                <li>Try pressing the reset button on the ESP32-CAM just as the upload begins</li>
+                            </ol>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>Camera initialization failure</h3>
+                            <span class="faq-toggle"><i class="fas fa-chevron-down"></i></span>
+                        </div>
+                        <div class="faq-answer">
+                            <p><strong>Symptoms:</strong> Serial monitor shows "Camera initialization failed" or similar message.</p>
+                            <p><strong>Possible causes:</strong></p>
+                            <ul>
+                                <li>Camera module not properly connected</li>
+                                <li>Insufficient power supply</li>
+                                <li>Faulty camera module</li>
+                            </ul>
+                            <p><strong>Solutions:</strong></p>
+                            <ol>
+                                <li>Check that the camera ribbon cable is properly seated in the connector</li>
+                                <li>Use a stable 5V power supply capable of providing at least 500mA</li>
+                                <li>Try power cycling the ESP32-CAM</li>
+                                <li>If possible, try with a different camera module</li>
+                            </ol>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>ESP32-CAM keeps restarting</h3>
+                            <span class="faq-toggle"><i class="fas fa-chevron-down"></i></span>
+                        </div>
+                        <div class="faq-answer">
+                            <p><strong>Symptoms:</strong> ESP32-CAM continuously restarts or the blue LED keeps flashing.</p>
+                            <p><strong>Possible causes:</strong></p>
+                            <ul>
+                                <li>Insufficient power supply</li>
+                                <li>Memory leak in the firmware</li>
+                                <li>Watchdog timer triggering due to long operations</li>
+                            </ul>
+                            <p><strong>Solutions:</strong></p>
+                            <ol>
+                                <li>Use a stable 5V power supply capable of providing at least 500mA</li>
+                                <li>Update to the latest firmware</li>
+                                <li>Reduce the camera resolution in the sketch</li>
+                                <li>Add watchdog timer resets in the sketch at appropriate points</li>
+                            </ol>
+                        </div>
+                    </div>
+                    
+                    <h2 id="connection-issues">Connection Issues</h2>
+                    <p>
+                        Issues related to the connection between the ESP32-CAM and the PC.
+                    </p>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>ESP32-CAM cannot connect to WiFi</h3>
+                            <span class="faq-toggle"><i class="fas fa-chevron-down"></i></span>
+                        </div>
+                        <div class="faq-answer">
+                            <p><strong>Symptoms:</strong> Serial monitor shows "Failed to connect to WiFi" or similar message.</p>
+                            <p><strong>Possible causes:</strong></p>
+                            <ul>
+                                <li>Incorrect WiFi credentials in the sketch</li>
+                                <li>WiFi network not available or out of range</li>
+                                <li>WiFi network using 5GHz band (ESP32 only supports 2.4GHz)</li>
+                            </ul>
+                            <p><strong>Solutions:</strong></p>
+                            <ol>
+                                <li>Double-check the WiFi SSID and password in the sketch</li>
+                                <li>Make sure the ESP32-CAM is within range of the WiFi network</li>
+                                <li>Ensure you're using a 2.4GHz WiFi network (not 5GHz)</li>
+                                <li>Try a simpler WiFi password without special characters</li>
+                            </ol>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>PC cannot connect to ESP32-CAM</h3>
+                            <span class="faq-toggle"><i class="fas fa-chevron-down"></i></span>
+                        </div>
+                        <div class="faq-answer">
+                            <p><strong>Symptoms:</strong> The PC software shows "Waiting for connection" but never connects.</p>
+                            <p><strong>Possible causes:</strong></p>
+                            <ul>
+                                <li>ESP32-CAM and PC not on the same network</li>
+                                <li>Incorrect IP address in the ESP32-CAM sketch</li>
+                                <li>Firewall blocking the connection</li>
+                                <li>Network router blocking the connection</li>
+                            </ul>
+                            <p><strong>Solutions:</strong></p>
+                            <ol>
+                                <li>Ensure both the ESP32-CAM and PC are on the same WiFi network</li>
+                                <li>Update the serverIP in the ESP32-CAM sketch to match your PC's IP address</li>
+                                <li>Check your firewall settings and allow the connection</li>
+                                <li>Try using a direct connection or a simpler network setup</li>
+                            </ol>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>Connection drops frequently</h3>
+                            <span class="faq-toggle"><i class="fas fa-chevron-down"></i></span>
+                        </div>
+                        <div class="faq-answer">
+                            <p><strong>Symptoms:</strong> The connection between ESP32-CAM and PC keeps dropping.</p>
+                            <p><strong>Possible causes:</strong></p>
+                            <ul>
+                                <li>Weak WiFi signal</li>
+                                <li>Network congestion</li>
+                                <li>ESP32-CAM overheating</li>
+                                <li>Power supply issues</li>
+                            </ul>
+                            <p><strong>Solutions:</strong></p>
+                            <ol>
+                                <li>Move the ESP32-CAM closer to the WiFi router</li>
+                                <li>Reduce network congestion by disconnecting unused devices</li>
+                                <li>Add a heat sink to the ESP32 chip or improve ventilation</li>
+                                <li>Use a more stable power supply</li>
+                                <li>Reduce the camera resolution to decrease bandwidth requirements</li>
+                            </ol>
+                        </div>
+                    </div>
+                    
+                    <h2 id="software-issues">PC Software Issues</h2>
+                    <p>
+                        Issues related to the PC software that receives and processes the video stream.
+                    </p>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>Missing dependencies</h3>
+                            <span class="faq-toggle"><i class="fas fa-chevron-down"></i></span>
+                        </div>
+                        <div class="faq-answer">
+                            <p><strong>Symptoms:</strong> Error messages about missing modules or packages when running the software.</p>
+                            <p><strong>Possible causes:</strong></p>
+                            <ul>
+                                <li>Dependencies not installed</li>
+                                <li>Virtual environment not activated</li>
+                                <li>Incompatible package versions</li>
+                            </ul>
+                            <p><strong>Solutions:</strong></p>
+                            <ol>
+                                <li>Make sure you've activated the virtual environment</li>
+                                <li>Run <code>pip install -r requirements.txt</code> again</li>
+                                <li>Check for error messages during installation and resolve them</li>
+                                <li>Try installing problematic packages individually</li>
+                            </ol>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>Model loading errors</h3>
+                            <span class="faq-toggle"><i class="fas fa-chevron-down"></i></span>
+                        </div>
+                        <div class="faq-answer">
+                            <p><strong>Symptoms:</strong> Error messages about missing model files or failure to load models.</p>
+                            <p><strong>Possible causes:</strong></p>
+                            <ul>
+                                <li>Model files not downloaded</li>
+                                <li>Incorrect file paths</li>
+                                <li>Corrupted model files</li>
+                            </ul>
+                            <p><strong>Solutions:</strong></p>
+                            <ol>
+                                <li>Run <code>python download_models.py</code> to download the model files</li>
+                                <li>Check that the model files exist in the correct location</li>
+                                <li>Delete the model files and download them again</li>
+                                <li>Check for disk space issues</li>
+                            </ol>
+                        </div>
+                    </div>
+                    
+                    <h2 id="ai-issues">AI Processing Issues</h2>
+                    <p>
+                        Issues related to the AI processing of the video stream.
+                    </p>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>No detections or poor detection accuracy</h3>
+                            <span class="faq-toggle"><i class="fas fa-chevron-down"></i></span>
+                        </div>
+                        <div class="faq-answer">
+                            <p><strong>Symptoms:</strong> AI models don't detect objects or have poor accuracy.</p>
+                            <p><strong>Possible causes:</strong></p>
+                            <ul>
+                                <li>Confidence threshold set too high</li>
+                                <li>Poor lighting conditions</li>
+                                <li>Objects too small in the frame</li>
+                                <li>Camera not focused properly</li>
+                            </ul>
+                            <p><strong>Solutions:</strong></p>
+                            <ol>
+                                <li>Lower the confidence threshold (try 0.3 or 0.4)</li>
+                                <li>Improve lighting conditions</li>
+                                <li>Move the camera closer to the objects of interest</li>
+                                <li>Adjust the camera focus</li>
+                                <li>Try a different AI model that might be better suited for your use case</li>
+                            </ol>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>False positives</h3>
+                            <span class="faq-toggle"><i class="fas fa-chevron-down"></i></span>
+                        </div>
+                        <div class="faq-answer">
+                            <p><strong>Symptoms:</strong> AI models detect objects that aren't actually there.</p>
+                            <p><strong>Possible causes:</strong></p>
+                            <ul>
+                                <li>Confidence threshold set too low</li>
+                                <li>Patterns in the background resembling objects</li>
+                                <li>Reflections or shadows</li>
+                            </ul>
+                            <p><strong>Solutions:</strong></p>
+                            <ol>
+                                <li>Increase the confidence threshold (try 0.6 or 0.7)</li>
+                                <li>Simplify the background if possible</li>
+                                <li>Adjust lighting to reduce shadows and reflections</li>
+                                <li>Try a different AI model that might be more accurate for your use case</li>
+                            </ol>
+                        </div>
+                    </div>
+                    
+                    <h2 id="performance-issues">Performance Issues</h2>
+                    <p>
+                        Issues related to the performance of the AI WiFi CAM system.
+                    </p>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>Low frame rate</h3>
+                            <span class="faq-toggle"><i class="fas fa-chevron-down"></i></span>
+                        </div>
+                        <div class="faq-answer">
+                            <p><strong>Symptoms:</strong> Video stream is choppy or has a very low frame rate.</p>
+                            <p><strong>Possible causes:</strong></p>
+                            <ul>
+                                <li>High resolution setting</li>
+                                <li>Slow network connection</li>
+                                <li>CPU/GPU limitations</li>
+                                <li>Too many AI models running simultaneously</li>
+                            </ul>
+                            <p><strong>Solutions:</strong></p>
+                            <ol>
+                                <li>Reduce the camera resolution</li>
+                                <li>Improve network conditions or use a wired connection</li>
+                                <li>Use a PC with a more powerful CPU or GPU</li>
+                                <li>Run only one AI model at a time</li>
+                                <li>Use a lighter AI model (e.g., MediaPipe instead of YOLOv4)</li>
+                            </ol>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>High CPU/GPU usage</h3>
+                            <span class="faq-toggle"><i class="fas fa-chevron-down"></i></span>
+                        </div>
+                        <div class="faq-answer">
+                            <p><strong>Symptoms:</strong> PC becomes slow or unresponsive when running the AI WiFi CAM software.</p>
+                            <p><strong>Possible causes:</strong></p>
+                            <ul>
+                                <li>Computationally intensive AI models</li>
+                                <li>High resolution video processing</li>
+                                <li>Multiple instances of the software running</li>
+                                <li>Other resource-intensive applications running simultaneously</li>
+                            </ul>
+                            <p><strong>Solutions:</strong></p>
+                            <ol>
+                                <li>Use a lighter AI model</li>
+                                <li>Reduce the camera resolution</li>
+                                <li>Close other applications to free up resources</li>
+                                <li>Upgrade your PC's hardware (more RAM, better CPU/GPU)</li>
+                                <li>Enable GPU acceleration if available</li>
+                            </ol>
+                        </div>
+                    </div>
+                    
+                    <h2 id="web-interface-issues">Web Interface Issues</h2>
+                    <p>
+                        Issues related to the web interface for accessing the AI WiFi CAM system.
+                    </p>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>Cannot access web interface</h3>
+                            <span class="faq-toggle"><i class="fas fa-chevron-down"></i></span>
+                        </div>
+                        <div class="faq-answer">
+                            <p><strong>Symptoms:</strong> Browser shows "Connection refused" or similar error when trying to access the web interface.</p>
+                            <p><strong>Possible causes:</strong></p>
+                            <ul>
+                                <li>Server not running</li>
+                                <li>Incorrect IP address or port</li>
+                                <li>Firewall blocking the connection</li>
+                                <li>Browser issues</li>
+                            </ul>
+                            <p><strong>Solutions:</strong></p>
+                            <ol>
+                                <li>Make sure the server is running</li>
+                                <li>Verify you're using the correct IP address and port</li>
+                                <li>Check firewall settings and allow the connection</li>
+                                <li>Try a different browser</li>
+                                <li>Try accessing from the same PC using localhost:8080</li>
+                            </ol>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>Web interface loads but no video</h3>
+                            <span class="faq-toggle"><i class="fas fa-chevron-down"></i></span>
+                        </div>
+                        <div class="faq-answer">
+                            <p><strong>Symptoms:</strong> Web interface loads but the video stream doesn't appear.</p>
+                            <p><strong>Possible causes:</strong></p>
+                            <ul>
+                                <li>ESP32-CAM not connected</li>
+                                <li>WebSocket connection issues</li>
+                                <li>Browser compatibility issues</li>
+                                <li>JavaScript errors</li>
+                            </ul>
+                            <p><strong>Solutions:</strong></p>
+                            <ol>
+                                <li>Make sure the ESP32-CAM is connected and streaming</li>
+                                <li>Check the browser console for errors</li>
+                                <li>Try a different browser (Chrome or Firefox recommended)</li>
+                                <li>Disable browser extensions that might be blocking WebSockets</li>
+                                <li>Refresh the page or clear browser cache</li>
+                            </ol>
+                        </div>
+                    </div>
+                    
+                    <h2 id="advanced-troubleshooting">Advanced Troubleshooting</h2>
+                    <p>
+                        Advanced troubleshooting techniques for persistent issues.
+                    </p>
+                    
+                    <h3>Debugging the ESP32-CAM</h3>
+                    <p>
+                        For persistent ESP32-CAM issues, you can enable debug output:
+                    </p>
+                    <ol>
+                        <li>In the Arduino sketch, add the following line at the top:
+                            <pre><code>#define DEBUG_ESP32CAM</code></pre>
+                        </li>
+                        <li>Upload the modified sketch to the ESP32-CAM</li>
+                        <li>Open the Serial Monitor in Arduino IDE (115200 baud)</li>
+                        <li>Observe the debug output for clues about the issue</li>
+                    </ol>
+                    
+                    <h3>Debugging the PC Software</h3>
+                    <p>
+                        For persistent PC software issues, you can enable debug logging:
+                    </p>
+                    <ol>
+                        <li>Run the software with the --debug flag:
+                            <pre><code>python pc_code/stream_receiver.py --debug</code></pre>
+                        </li>
+                        <li>Check the console output for detailed logging information</li>
+                        <li>Look for error messages or warnings that might indicate the issue</li>
+                    </ol>
+                    
+                    <h3>Network Diagnostics</h3>
+                    <p>
+                        For persistent network issues, you can use network diagnostic tools:
+                    </p>
+                    <ol>
+                        <li>Use ping to check connectivity:
+                            <pre><code>ping [ESP32-CAM_IP_ADDRESS]</code></pre>
+                        </li>
+                        <li>Use netstat to check if the server is listening on the correct port:
+                            <pre><code>netstat -an | findstr 8080</code></pre>
+                        </li>
+                        <li>Use Wireshark or a similar tool to capture and analyze network traffic</li>
+                    </ol>
+                    
+                    <div class="highlight">
+                        <p><i class="fas fa-exclamation-triangle"></i> <strong>Still having issues?</strong> If you've tried all the troubleshooting steps and still can't resolve the issue, consider posting on the <a href="https://github.com/bobbyiscool123/AI-WIFI-CAM/issues">GitHub Issues</a> page with detailed information about your setup and the problem you're experiencing.</p>
+                    </div>
+                </main>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-container">
+            <div class="footer-section">
+                <h3>AI WiFi CAM</h3>
+                <p>An open-source project combining ESP32-CAM with real-time AI processing capabilities.</p>
+                <div class="social-links">
+                    <a href="https://github.com/bobbyiscool123/AI-WIFI-CAM" title="GitHub Repository">
+                        <i class="fab fa-github"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Documentation</h3>
+                <ul class="footer-links">
+                    <li><a href="installation.html">Installation Guide</a></li>
+                    <li><a href="usage.html">Usage Guide</a></li>
+                    <li><a href="troubleshooting.html">Troubleshooting</a></li>
+                    <li><a href="qa.html">Q&A Document</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Resources</h3>
+                <ul class="footer-links">
+                    <li><a href="https://github.com/espressif/arduino-esp32">ESP32 Arduino Core</a></li>
+                    <li><a href="https://opencv.org/">OpenCV</a></li>
+                    <li><a href="https://github.com/AlexeyAB/darknet">YOLOv4</a></li>
+                    <li><a href="https://developers.google.com/mediapipe">MediaPipe</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 AI WiFi CAM Project. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

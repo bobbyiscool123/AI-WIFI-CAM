@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Installation Guide - AI WiFi CAM</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <img src="images/logo.svg" alt="AI WiFi CAM Logo" onerror="this.src='https://via.placeholder.com/40x40?text=AI';this.onerror=null;">
+                <h1>AI WiFi CAM</h1>
+            </a>
+            <button class="mobile-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="installation.html" class="active">Installation</a></li>
+                <li><a href="usage.html">Usage</a></li>
+                <li><a href="troubleshooting.html">Troubleshooting</a></li>
+                <li><a href="qa.html">Q&A</a></li>
+            </ul>
+            <button class="theme-toggle" title="Toggle dark/light mode">
+                <i class="fas fa-moon"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Installation Guide</h1>
+            <p>
+                Step-by-step instructions for setting up the AI WiFi CAM system
+            </p>
+        </div>
+    </section>
+
+    <!-- Documentation Section -->
+    <section class="documentation">
+        <div class="container">
+            <div class="doc-container">
+                <aside class="doc-sidebar">
+                    <h3>Contents</h3>
+                    <ul>
+                        <li><a href="#prerequisites">Prerequisites</a></li>
+                        <li><a href="#hardware-setup">Hardware Setup</a></li>
+                        <li><a href="#software-setup">Software Setup</a></li>
+                        <li><a href="#esp32-setup">ESP32-CAM Setup</a></li>
+                        <li><a href="#pc-setup">PC Setup</a></li>
+                        <li><a href="#testing">Testing the System</a></li>
+                        <li><a href="#troubleshooting">Troubleshooting</a></li>
+                    </ul>
+                </aside>
+                
+                <main class="doc-content">
+                    <h2 id="prerequisites">Prerequisites</h2>
+                    <p>
+                        Before you begin, make sure you have the following components and software:
+                    </p>
+                    
+                    <h3>Hardware Components</h3>
+                    <ul>
+                        <li>ESP32-CAM module (AI Thinker or similar)</li>
+                        <li>FTDI programmer or USB-to-TTL converter</li>
+                        <li>Jumper wires</li>
+                        <li>Breadboard (optional, but helpful)</li>
+                        <li>5V power supply</li>
+                        <li>Micro USB cable</li>
+                        <li>PC with WiFi capability</li>
+                    </ul>
+                    
+                    <h3>Software Requirements</h3>
+                    <ul>
+                        <li>Arduino IDE (1.8.x or newer)</li>
+                        <li>ESP32 board support package</li>
+                        <li>Python 3.7 or newer</li>
+                        <li>Git (optional, for cloning the repository)</li>
+                    </ul>
+                    
+                    <h2 id="hardware-setup">Hardware Setup</h2>
+                    <p>
+                        The ESP32-CAM needs to be connected to an FTDI programmer for flashing the firmware.
+                    </p>
+                    
+                    <h3>Wiring Diagram</h3>
+                    <img src="images/esp32cam_wiring.svg" alt="ESP32-CAM Wiring Diagram">
+                    
+                    <h3>Connection Steps</h3>
+                    <ol>
+                        <li>Connect the ESP32-CAM to the FTDI programmer as follows:
+                            <table>
+                                <tr>
+                                    <th>ESP32-CAM</th>
+                                    <th>FTDI Programmer</th>
+                                </tr>
+                                <tr>
+                                    <td>5V</td>
+                                    <td>VCC (5V)</td>
+                                </tr>
+                                <tr>
+                                    <td>GND</td>
+                                    <td>GND</td>
+                                </tr>
+                                <tr>
+                                    <td>U0R (TX)</td>
+                                    <td>RX</td>
+                                </tr>
+                                <tr>
+                                    <td>U0T (RX)</td>
+                                    <td>TX</td>
+                                </tr>
+                                <tr>
+                                    <td>GPIO0</td>
+                                    <td>GND (for flashing mode)</td>
+                                </tr>
+                            </table>
+                        </li>
+                        <li>Connect the FTDI programmer to your PC using a USB cable</li>
+                        <li><strong>Important:</strong> Connect GPIO0 to GND only during flashing. Disconnect it for normal operation.</li>
+                    </ol>
+                    
+                    <div class="highlight">
+                        <p><i class="fas fa-info-circle"></i> <strong>Note:</strong> The ESP32-CAM requires a stable 5V power supply capable of providing at least 500mA of current.</p>
+                    </div>
+                    
+                    <h2 id="software-setup">Software Setup</h2>
+                    <p>
+                        Follow these steps to set up the required software environment.
+                    </p>
+                    
+                    <h3>Arduino IDE Setup</h3>
+                    <ol>
+                        <li>Download and install the Arduino IDE from <a href="https://www.arduino.cc/en/software" target="_blank">arduino.cc</a></li>
+                        <li>Open Arduino IDE and go to File > Preferences</li>
+                        <li>Add the following URL to the "Additional Boards Manager URLs" field:
+                            <pre><code>https://dl.espressif.com/dl/package_esp32_index.json</code></pre>
+                        </li>
+                        <li>Go to Tools > Board > Boards Manager</li>
+                        <li>Search for "ESP32" and install the "ESP32 by Espressif Systems"</li>
+                    </ol>
+                    
+                    <h2 id="esp32-setup">ESP32-CAM Setup</h2>
+                    <p>
+                        Now you'll program the ESP32-CAM with the firmware that enables video streaming.
+                    </p>
+                    
+                    <h3>Uploading the Firmware</h3>
+                    <ol>
+                        <li>Clone the AI WiFi CAM repository:
+                            <pre><code>git clone https://github.com/bobbyiscool123/AI-WIFI-CAM.git
+cd AI-WIFI-CAM</code></pre>
+                        </li>
+                        <li>Open the Arduino sketch in the Arduino IDE:
+                            <pre><code>esp32cam_code/esp32cam_stream.ino</code></pre>
+                        </li>
+                        <li>Modify the WiFi credentials and server IP in the sketch:
+                            <pre><code>const char* ssid = "YOUR_WIFI_SSID";
+const char* password = "YOUR_WIFI_PASSWORD";
+const char* serverIP = "192.168.1.100"; // Your PC's IP address</code></pre>
+                        </li>
+                        <li>Select the correct board in Arduino IDE:
+                            <ul>
+                                <li>Tools > Board > ESP32 Arduino > AI Thinker ESP32-CAM</li>
+                            </ul>
+                        </li>
+                        <li>Select the correct port:
+                            <ul>
+                                <li>Tools > Port > (select the port where your FTDI programmer is connected)</li>
+                            </ul>
+                        </li>
+                        <li>Make sure GPIO0 is connected to GND for flashing mode</li>
+                        <li>Click the Upload button in Arduino IDE</li>
+                        <li>After successful upload, disconnect GPIO0 from GND</li>
+                        <li>Press the reset button on the ESP32-CAM</li>
+                    </ol>
+                    
+                    <div class="highlight">
+                        <p><i class="fas fa-exclamation-triangle"></i> <strong>Important:</strong> After uploading, disconnect GPIO0 from GND and reset the ESP32-CAM for normal operation.</p>
+                    </div>
+                    
+                    <h2 id="pc-setup">PC Setup</h2>
+                    <p>
+                        Now you'll set up the PC software that receives the video stream and performs AI processing.
+                    </p>
+                    
+                    <h3>Python Environment Setup</h3>
+                    <ol>
+                        <li>Make sure Python 3.7 or newer is installed on your PC</li>
+                        <li>Create a virtual environment (recommended):
+                            <pre><code># Windows
+python -m venv venv
+venv\Scripts\activate
+
+# macOS/Linux
+python -m venv venv
+source venv/bin/activate</code></pre>
+                        </li>
+                        <li>Install the required dependencies:
+                            <pre><code>cd pc_code
+pip install -r requirements.txt</code></pre>
+                        </li>
+                    </ol>
+                    
+                    <h3>Download AI Models</h3>
+                    <ol>
+                        <li>Run the script to download the required AI model files:
+                            <pre><code>python download_models.py</code></pre>
+                        </li>
+                        <li>This will download the YOLOv4 model files (weights, configuration, and class names)</li>
+                    </ol>
+                    
+                    <h2 id="testing">Testing the System</h2>
+                    <p>
+                        Now it's time to test if everything is working correctly.
+                    </p>
+                    
+                    <h3>System Compatibility Check</h3>
+                    <ol>
+                        <li>Run the system compatibility check:
+                            <pre><code>python check_system.py</code></pre>
+                        </li>
+                        <li>This will verify that all required packages are installed and that your system meets the minimum requirements</li>
+                    </ol>
+                    
+                    <h3>Testing the Connection</h3>
+                    <ol>
+                        <li>Power on the ESP32-CAM (make sure GPIO0 is NOT connected to GND)</li>
+                        <li>Run the connection test script:
+                            <pre><code>python test_connection.py</code></pre>
+                        </li>
+                        <li>If everything is working correctly, you should see the video stream from the ESP32-CAM</li>
+                    </ol>
+                    
+                    <h3>Testing the Web Interface</h3>
+                    <ol>
+                        <li>Run the web interface test script:
+                            <pre><code>python test_web_interface.py</code></pre>
+                        </li>
+                        <li>Open a web browser and navigate to:
+                            <pre><code>http://localhost:8080</code></pre>
+                        </li>
+                        <li>You should see the web interface with the video stream</li>
+                    </ol>
+                    
+                    <h2 id="troubleshooting">Troubleshooting</h2>
+                    <p>
+                        If you encounter issues during the installation process, check the following:
+                    </p>
+                    
+                    <h3>ESP32-CAM Issues</h3>
+                    <ul>
+                        <li><strong>Cannot upload sketch</strong>: Make sure GPIO0 is connected to GND during flashing</li>
+                        <li><strong>Camera initialization failure</strong>: Try power cycling the ESP32-CAM</li>
+                        <li><strong>WiFi connection issues</strong>: Verify WiFi credentials in the sketch</li>
+                        <li><strong>Power problems</strong>: Ensure you're using a stable 5V power supply capable of providing at least 500mA</li>
+                    </ul>
+                    
+                    <h3>PC Software Issues</h3>
+                    <ul>
+                        <li><strong>Missing dependencies</strong>: Run <code>pip install -r requirements.txt</code> again</li>
+                        <li><strong>Model loading errors</strong>: Run <code>python download_models.py</code> again</li>
+                        <li><strong>Connection failures</strong>: Check firewall settings and make sure the ESP32-CAM and PC are on the same network</li>
+                    </ul>
+                    
+                    <p>
+                        For more detailed troubleshooting information, see the <a href="troubleshooting.html">Troubleshooting Guide</a>.
+                    </p>
+                    
+                    <div class="highlight">
+                        <p><i class="fas fa-check-circle"></i> <strong>Success!</strong> If you've completed all the steps above and everything is working correctly, you're ready to start using the AI WiFi CAM system. See the <a href="usage.html">Usage Guide</a> for instructions on how to use the system.</p>
+                    </div>
+                </main>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-container">
+            <div class="footer-section">
+                <h3>AI WiFi CAM</h3>
+                <p>An open-source project combining ESP32-CAM with real-time AI processing capabilities.</p>
+                <div class="social-links">
+                    <a href="https://github.com/bobbyiscool123/AI-WIFI-CAM" title="GitHub Repository">
+                        <i class="fab fa-github"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Documentation</h3>
+                <ul class="footer-links">
+                    <li><a href="installation.html">Installation Guide</a></li>
+                    <li><a href="usage.html">Usage Guide</a></li>
+                    <li><a href="troubleshooting.html">Troubleshooting</a></li>
+                    <li><a href="qa.html">Q&A Document</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Resources</h3>
+                <ul class="footer-links">
+                    <li><a href="https://github.com/espressif/arduino-esp32">ESP32 Arduino Core</a></li>
+                    <li><a href="https://opencv.org/">OpenCV</a></li>
+                    <li><a href="https://github.com/AlexeyAB/darknet">YOLOv4</a></li>
+                    <li><a href="https://developers.google.com/mediapipe">MediaPipe</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 AI WiFi CAM Project. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

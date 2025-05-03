@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Usage Guide - AI WiFi CAM</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <img src="images/logo.svg" alt="AI WiFi CAM Logo" onerror="this.src='https://via.placeholder.com/40x40?text=AI';this.onerror=null;">
+                <h1>AI WiFi CAM</h1>
+            </a>
+            <button class="mobile-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="installation.html">Installation</a></li>
+                <li><a href="usage.html" class="active">Usage</a></li>
+                <li><a href="troubleshooting.html">Troubleshooting</a></li>
+                <li><a href="qa.html">Q&A</a></li>
+            </ul>
+            <button class="theme-toggle" title="Toggle dark/light mode">
+                <i class="fas fa-moon"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Usage Guide</h1>
+            <p>
+                Learn how to use and customize the AI WiFi CAM system
+            </p>
+        </div>
+    </section>
+
+    <!-- Documentation Section -->
+    <section class="documentation">
+        <div class="container">
+            <div class="doc-container">
+                <aside class="doc-sidebar">
+                    <h3>Contents</h3>
+                    <ul>
+                        <li><a href="#starting">Starting the System</a></li>
+                        <li><a href="#web-interface">Web Interface</a></li>
+                        <li><a href="#ai-models">AI Models</a></li>
+                        <li><a href="#settings">Adjusting Settings</a></li>
+                        <li><a href="#snapshots">Taking Snapshots</a></li>
+                        <li><a href="#keyboard">Keyboard Controls</a></li>
+                        <li><a href="#advanced">Advanced Usage</a></li>
+                    </ul>
+                </aside>
+                
+                <main class="doc-content">
+                    <h2 id="starting">Starting the System</h2>
+                    <p>
+                        After completing the installation process, you can start using the AI WiFi CAM system.
+                    </p>
+                    
+                    <h3>Starting the Server</h3>
+                    <ol>
+                        <li>Make sure the ESP32-CAM is powered on and connected to your WiFi network</li>
+                        <li>Open a terminal or command prompt</li>
+                        <li>Navigate to the AI WiFi CAM directory</li>
+                        <li>Activate the Python virtual environment:
+                            <pre><code># Windows
+venv\Scripts\activate
+
+# macOS/Linux
+source venv/bin/activate</code></pre>
+                        </li>
+                        <li>Start the server:
+                            <pre><code>python pc_code/stream_receiver.py</code></pre>
+                        </li>
+                        <li>Alternatively, you can use the provided scripts:
+                            <pre><code># Windows
+run_ai_cam.bat
+
+# macOS/Linux
+./run_ai_cam.sh</code></pre>
+                        </li>
+                    </ol>
+                    
+                    <h3>Accessing the Web Interface</h3>
+                    <ol>
+                        <li>Open a web browser on any device connected to the same network</li>
+                        <li>Navigate to:
+                            <pre><code>http://[PC_IP_ADDRESS]:8080</code></pre>
+                            Where [PC_IP_ADDRESS] is the IP address of the PC running the server
+                        </li>
+                        <li>If you're accessing from the same PC, you can use:
+                            <pre><code>http://localhost:8080</code></pre>
+                        </li>
+                    </ol>
+                    
+                    <h2 id="web-interface">Web Interface</h2>
+                    <p>
+                        The web interface provides a user-friendly way to interact with the AI WiFi CAM system.
+                    </p>
+                    
+                    <h3>Interface Overview</h3>
+                    <img src="images/web_interface.svg" alt="Web Interface Overview" onerror="this.src='https://via.placeholder.com/800x400?text=Web+Interface+Screenshot';this.onerror=null;">
+                    
+                    <h3>Main Components</h3>
+                    <ul>
+                        <li><strong>Video Display</strong>: Shows the live video stream with AI annotations</li>
+                        <li><strong>Control Panel</strong>: Contains controls for adjusting settings</li>
+                        <li><strong>Status Information</strong>: Displays FPS, resolution, and detection counts</li>
+                    </ul>
+                    
+                    <h2 id="ai-models">AI Models</h2>
+                    <p>
+                        The AI WiFi CAM system supports multiple AI models for different types of detection and recognition.
+                    </p>
+                    
+                    <h3>Available Models</h3>
+                    <table>
+                        <tr>
+                            <th>Model</th>
+                            <th>Description</th>
+                            <th>Use Cases</th>
+                        </tr>
+                        <tr>
+                            <td>YOLOv4</td>
+                            <td>Object detection model that can detect 80 different object categories</td>
+                            <td>General object detection, security monitoring, counting objects</td>
+                        </tr>
+                        <tr>
+                            <td>MediaPipe Face</td>
+                            <td>Face detection model optimized for real-time performance</td>
+                            <td>Face detection, face counting, presence detection</td>
+                        </tr>
+                        <tr>
+                            <td>MediaPipe Pose</td>
+                            <td>Human pose estimation model that tracks key body points</td>
+                            <td>Gesture recognition, posture analysis, activity monitoring</td>
+                        </tr>
+                    </table>
+                    
+                    <h3>Switching Models</h3>
+                    <ol>
+                        <li>In the web interface, locate the "AI Model" dropdown in the control panel</li>
+                        <li>Select the desired model from the dropdown</li>
+                        <li>The system will automatically switch to the selected model</li>
+                    </ol>
+                    
+                    <div class="highlight">
+                        <p><i class="fas fa-info-circle"></i> <strong>Note:</strong> Switching models may cause a brief pause in the video stream while the new model is loaded.</p>
+                    </div>
+                    
+                    <h2 id="settings">Adjusting Settings</h2>
+                    <p>
+                        The AI WiFi CAM system allows you to adjust various settings to customize its behavior.
+                    </p>
+                    
+                    <h3>Confidence Threshold</h3>
+                    <p>
+                        The confidence threshold determines how certain the AI model must be before reporting a detection.
+                    </p>
+                    <ol>
+                        <li>Locate the "Confidence Threshold" slider in the control panel</li>
+                        <li>Adjust the slider to the desired value (0.0 - 1.0)
+                            <ul>
+                                <li>Higher values (e.g., 0.8) result in fewer but more confident detections</li>
+                                <li>Lower values (e.g., 0.3) result in more detections but may include false positives</li>
+                            </ul>
+                        </li>
+                    </ol>
+                    
+                    <h3>Resolution Settings</h3>
+                    <p>
+                        You can adjust the resolution of the video stream to balance quality and performance.
+                    </p>
+                    <ol>
+                        <li>Locate the "Resolution" dropdown in the control panel</li>
+                        <li>Select the desired resolution from the dropdown
+                            <ul>
+                                <li>Higher resolutions provide more detail but may reduce frame rate</li>
+                                <li>Lower resolutions provide higher frame rates but less detail</li>
+                            </ul>
+                        </li>
+                    </ol>
+                    
+                    <h2 id="snapshots">Taking Snapshots</h2>
+                    <p>
+                        The AI WiFi CAM system allows you to capture and save still images with AI annotations.
+                    </p>
+                    
+                    <h3>Capturing Snapshots</h3>
+                    <ol>
+                        <li>In the web interface, click the camera button in the control panel</li>
+                        <li>The system will capture the current frame with all AI annotations</li>
+                        <li>The snapshot will be saved to the "snapshots" directory on the PC</li>
+                    </ol>
+                    
+                    <h3>Viewing Snapshots</h3>
+                    <ol>
+                        <li>Snapshots are saved with a timestamp in the filename</li>
+                        <li>You can view the snapshots in the "snapshots" directory on the PC</li>
+                        <li>The web interface also provides a gallery view of recent snapshots</li>
+                    </ol>
+                    
+                    <h2 id="keyboard">Keyboard Controls</h2>
+                    <p>
+                        When using the desktop display (not the web interface), you can use keyboard shortcuts to control the system.
+                    </p>
+                    
+                    <h3>Available Shortcuts</h3>
+                    <table>
+                        <tr>
+                            <th>Key</th>
+                            <th>Function</th>
+                        </tr>
+                        <tr>
+                            <td>q</td>
+                            <td>Quit the application</td>
+                        </tr>
+                        <tr>
+                            <td>s</td>
+                            <td>Save a snapshot</td>
+                        </tr>
+                        <tr>
+                            <td>p</td>
+                            <td>Pause/resume the video stream</td>
+                        </tr>
+                        <tr>
+                            <td>+</td>
+                            <td>Increase confidence threshold</td>
+                        </tr>
+                        <tr>
+                            <td>-</td>
+                            <td>Decrease confidence threshold</td>
+                        </tr>
+                        <tr>
+                            <td>1-3</td>
+                            <td>Switch between AI models</td>
+                        </tr>
+                    </table>
+                    
+                    <h2 id="advanced">Advanced Usage</h2>
+                    <p>
+                        The AI WiFi CAM system provides several advanced features for power users.
+                    </p>
+                    
+                    <h3>Command Line Arguments</h3>
+                    <p>
+                        The stream_receiver.py script accepts several command line arguments to customize its behavior:
+                    </p>
+                    <pre><code>python pc_code/stream_receiver.py [options]
+
+Options:
+  --host HOST           Host IP address to bind the server (default: 0.0.0.0)
+  --port PORT           Port to bind the server (default: 8080)
+  --model {yolo,face,pose}
+                        AI model to use (default: yolo)
+  --threshold THRESHOLD
+                        Confidence threshold (default: 0.5)
+  --no-display          Disable desktop display window
+  --no-web              Disable web interface
+  --debug               Enable debug logging</code></pre>
+                    
+                    <h3>Multiple Cameras</h3>
+                    <p>
+                        You can use multiple ESP32-CAM modules with a single PC:
+                    </p>
+                    <ol>
+                        <li>Program each ESP32-CAM with a unique identifier in the sketch</li>
+                        <li>Start multiple instances of the stream_receiver.py script with different ports:
+                            <pre><code>python pc_code/stream_receiver.py --port 8080 --cam-id cam1
+python pc_code/stream_receiver.py --port 8081 --cam-id cam2</code></pre>
+                        </li>
+                        <li>Access each camera through its respective port in the web browser</li>
+                    </ol>
+                    
+                    <h3>Custom AI Models</h3>
+                    <p>
+                        Advanced users can add their own custom AI models to the system:
+                    </p>
+                    <ol>
+                        <li>Create a new Python module in the pc_code/models directory</li>
+                        <li>Implement the required interface methods</li>
+                        <li>Register the model in the ai_processor.py file</li>
+                    </ol>
+                    <p>
+                        For detailed instructions on adding custom models, see the developer documentation in the GitHub repository.
+                    </p>
+                    
+                    <div class="highlight">
+                        <p><i class="fas fa-lightbulb"></i> <strong>Tip:</strong> For the best performance, consider using a PC with a dedicated GPU. The system will automatically use GPU acceleration if available.</p>
+                    </div>
+                </main>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-container">
+            <div class="footer-section">
+                <h3>AI WiFi CAM</h3>
+                <p>An open-source project combining ESP32-CAM with real-time AI processing capabilities.</p>
+                <div class="social-links">
+                    <a href="https://github.com/bobbyiscool123/AI-WIFI-CAM" title="GitHub Repository">
+                        <i class="fab fa-github"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Documentation</h3>
+                <ul class="footer-links">
+                    <li><a href="installation.html">Installation Guide</a></li>
+                    <li><a href="usage.html">Usage Guide</a></li>
+                    <li><a href="troubleshooting.html">Troubleshooting</a></li>
+                    <li><a href="qa.html">Q&A Document</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Resources</h3>
+                <ul class="footer-links">
+                    <li><a href="https://github.com/espressif/arduino-esp32">ESP32 Arduino Core</a></li>
+                    <li><a href="https://opencv.org/">OpenCV</a></li>
+                    <li><a href="https://github.com/AlexeyAB/darknet">YOLOv4</a></li>
+                    <li><a href="https://developers.google.com/mediapipe">MediaPipe</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 AI WiFi CAM Project. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
