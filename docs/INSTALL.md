@@ -23,8 +23,8 @@ This guide provides detailed instructions for setting up the AI WiFi CAM project
 
 ### 1. Clone the Repository
 ```bash
-git clone https://github.com/yourusername/ai-wifi-cam.git
-cd ai-wifi-cam
+git clone https://github.com/bobbyiscool123/AI-WIFI-CAM.git
+cd AI-WIFI-CAM
 ```
 
 ### 2. Set Up Python Environment
@@ -122,7 +122,7 @@ Connect the ESP32-CAM to the FTDI programmer as follows:
 #### Upload the Sketch
 1. Select the correct board in Arduino IDE:
    - Go to **Tools > Board > ESP32 Arduino > AI Thinker ESP32-CAM**
-   
+
 2. Select the correct port:
    - Go to **Tools > Port** and select the COM port connected to your FTDI programmer
 
