@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI WiFi CAM - ESP32-CAM with Real-time AI Processing</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 20px;
+        }
+        h1 {
+            color: #2c3e50;
+        }
+        h2 {
+            color: #3498db;
+            margin-top: 30px;
+        }
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        .section {
+            flex: 1;
+            min-width: 300px;
+            margin: 10px;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        pre {
+            background-color: #f4f4f4;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        code {
+            font-family: 'Courier New', Courier, monospace;
+        }
+        .btn {
+            display: inline-block;
+            background-color: #3498db;
+            color: white;
+            padding: 10px 15px;
+            text-decoration: none;
+            border-radius: 4px;
+            margin-top: 10px;
+        }
+        .btn:hover {
+            background-color: #2980b9;
+        }
+        footer {
+            margin-top: 50px;
+            text-align: center;
+            color: #7f8c8d;
+            font-size: 0.9em;
+            border-top: 1px solid #eee;
+            padding-top: 20px;
+        }
+        .feature-list {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        .feature-list li {
+            margin-bottom: 10px;
+            padding-left: 25px;
+            position: relative;
+        }
+        .feature-list li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #27ae60;
+        }
+        .demo-img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+            margin: 20px 0;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+        }
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>AI WiFi CAM</h1>
+        <p>ESP32-CAM with Real-time AI Processing</p>
+        <a href="https://github.com/bobbyiscool123/AI-WIFI-CAM" class="btn">View on GitHub</a>
+    </header>
+
+    <main>
+        <section>
+            <h2>Project Overview</h2>
+            <p>
+                AI WiFi CAM is an open-source project that combines the ESP32-CAM with powerful AI processing capabilities.
+                The system streams video from the ESP32-CAM over WebSockets/TCP to a PC, where real-time AI processing is performed
+                using Python with OpenCV and various AI libraries.
+            </p>
+            <p>
+                The processed video, with AI detections overlaid, is then made available through a web interface that can be
+                accessed from any device on the same network.
+            </p>
+        </section>
+
+        <div class="container">
+            <div class="section">
+                <h2>Key Features</h2>
+                <ul class="feature-list">
+                    <li>Real-time video streaming from ESP32-CAM</li>
+                    <li>Object detection using YOLOv4</li>
+                    <li>Face detection and recognition</li>
+                    <li>Pose estimation</li>
+                    <li>Web interface for easy access</li>
+                    <li>Adjustable AI model selection</li>
+                    <li>Configurable detection confidence threshold</li>
+                    <li>Snapshot capability</li>
+                    <li>Performance statistics display</li>
+                </ul>
+            </div>
+
+            <div class="section">
+                <h2>Getting Started</h2>
+                <p>Follow these steps to get started with AI WiFi CAM:</p>
+                <ol>
+                    <li>Clone the repository</li>
+                    <li>Set up the Python environment</li>
+                    <li>Download the AI models</li>
+                    <li>Program the ESP32-CAM</li>
+                    <li>Run the system</li>
+                </ol>
+                <p>For detailed instructions, see the <a href="https://github.com/bobbyiscool123/AI-WIFI-CAM/blob/master/docs/INSTALL.md">Installation Guide</a>.</p>
+            </div>
+        </div>
+
+        <section>
+            <h2>Documentation</h2>
+            <p>Comprehensive documentation is available to help you set up and use the AI WiFi CAM system:</p>
+            <ul>
+                <li><a href="https://github.com/bobbyiscool123/AI-WIFI-CAM/blob/master/docs/INSTALL.md">Installation Guide</a> - Step-by-step instructions for setting up the system</li>
+                <li><a href="https://github.com/bobbyiscool123/AI-WIFI-CAM/blob/master/USER.md">User Guide</a> - Instructions for using the system</li>
+                <li><a href="https://github.com/bobbyiscool123/AI-WIFI-CAM/blob/master/docs/QA.md">Q&A Document</a> - Answers to common questions about the project</li>
+                <li><a href="https://github.com/bobbyiscool123/AI-WIFI-CAM/blob/master/docs/TROUBLESHOOTING.md">Troubleshooting Guide</a> - Solutions to common issues</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>System Architecture</h2>
+            <p>
+                The AI WiFi CAM system consists of two main components:
+            </p>
+            <ol>
+                <li>
+                    <strong>ESP32-CAM</strong>: Captures video and streams it over WebSockets/TCP to the PC.
+                    The ESP32-CAM is programmed with Arduino code that handles the camera configuration,
+                    WiFi connection, and video streaming.
+                </li>
+                <li>
+                    <strong>PC Software</strong>: Receives the video stream, performs AI processing,
+                    and serves the processed video through a web interface. The PC software is written
+                    in Python and uses libraries such as OpenCV, TensorFlow, and MediaPipe for AI processing.
+                </li>
+            </ol>
+            <p>
+                The system is designed to be modular and extensible, allowing for easy addition of new
+                AI models and features.
+            </p>
+        </section>
+
+        <section>
+            <h2>AI Models</h2>
+            <p>
+                The AI WiFi CAM system supports multiple AI models for different types of detection and recognition:
+            </p>
+            <ul>
+                <li>
+                    <strong>YOLOv4</strong>: A state-of-the-art object detection model that can detect 80 different
+                    object categories, including people, vehicles, animals, and everyday objects.
+                </li>
+                <li>
+                    <strong>MediaPipe Face Detection</strong>: A lightweight face detection model that can detect
+                    faces in real-time with high accuracy.
+                </li>
+                <li>
+                    <strong>MediaPipe Pose</strong>: A pose estimation model that can detect human body poses
+                    and track key body points.
+                </li>
+            </ul>
+            <p>
+                For more information about the AI models, see the <a href="https://github.com/bobbyiscool123/AI-WIFI-CAM/blob/master/docs/QA.md">Q&A Document</a>.
+            </p>
+        </section>
+    </main>
+
+    <footer>
+        <p>AI WiFi CAM is an open-source project. Contributions are welcome!</p>
+        <p>&copy; 2023 AI WiFi CAM Project</p>
+    </footer>
+</body>
+</html>
