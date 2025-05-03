@@ -11,6 +11,9 @@
 USER.md
 subtasks.md
 
+# Ignore LSWR folder
+LSWR/
+
 # Python virtual environment
 venv/
 env/
