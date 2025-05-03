@@ -15,7 +15,7 @@
 
   <!-- Web Interface Header -->
   <rect x="50" y="90" width="700" height="60" rx="5" fill="#4299e1" stroke="#3182ce" stroke-width="2"/>
-  <text x="400" y="130" font-family="Arial" font-size="24" text-anchor="middle" fill="#ffffff" font-weight="bold">AI WiFi CAM</text>
+  <text x="400" y="125" font-family="Arial" font-size="24" text-anchor="middle" fill="#ffffff" font-weight="bold">AI WiFi CAM</text>
   <text x="400" y="150" font-family="Arial" font-size="14" text-anchor="middle" fill="#ffffff">ESP32-CAM with Real-time AI Processing</text>
 
   <!-- Main Content Area - Left Side -->
