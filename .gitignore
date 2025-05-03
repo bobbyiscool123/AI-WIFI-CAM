@@ -14,6 +14,10 @@ subtasks.md
 # Ignore LSWR folder
 LSWR/
 
+# Ignore models directory (large files)
+models/
+*.weights
+
 # Python virtual environment
 venv/
 env/
