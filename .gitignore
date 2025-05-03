@@ -1,0 +1,37 @@
+# Ignore practice folder
+.practice/
+
+# Ignore renamed documentation files
+.README.md
+.INSTALL.md
+.USAGE.md
+.TROUBLESHOOTING.md
+
+# Python virtual environment
+venv/
+env/
+ENV/
+
+# Python cache files
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+
+# Distribution / packaging
+dist/
+build/
+*.egg-info/
+
+# Logs
+*.log
+
+# IDE specific files
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS specific files
+.DS_Store
+Thumbs.db
