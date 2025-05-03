@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="240" height="50" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="240" height="50" rx="6" fill="none" />
+  
+  <!-- Camera Icon -->
+  <g transform="translate(5, 10) scale(0.6)">
+    <!-- Camera Body -->
+    <rect x="5" y="10" width="35" height="25" rx="3" fill="#1e293b" stroke="#0f172a" stroke-width="1.5"/>
+    
+    <!-- Camera Lens -->
+    <circle cx="22.5" cy="22.5" r="10" fill="#334155" stroke="#0f172a" stroke-width="1.5"/>
+    <circle cx="22.5" cy="22.5" r="7" fill="#1e293b" stroke="#0f172a" stroke-width="1"/>
+    <circle cx="22.5" cy="22.5" r="3.5" fill="#0f172a"/>
+    
+    <!-- Camera Top -->
+    <rect x="12" y="5" width="20" height="5" rx="2" fill="#1e293b" stroke="#0f172a" stroke-width="1.5"/>
+    
+    <!-- Flash -->
+    <rect x="32" y="13" width="4" height="4" rx="1" fill="#fbbf24" stroke="#0f172a" stroke-width="0.75"/>
+    
+    <!-- WiFi Signal -->
+    <path d="M 45,10 Q 55,5 65,10" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round"/>
+    <path d="M 45,15 Q 55,10 65,15" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round"/>
+    <path d="M 45,20 Q 55,15 65,20" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round"/>
+  </g>
+  
+  <!-- Text -->
+  <text x="120" y="30" font-family="Arial, sans-serif" font-size="24" font-weight="bold" text-anchor="middle" fill="#2563eb">AI WiFi CAM</text>
+  
+  <!-- Circuit Board Pattern -->
+  <g stroke="#4b72e0" stroke-width="0.5" opacity="0.2">
+    <line x1="200" y1="10" x2="230" y2="10" />
+    <line x1="210" y1="10" x2="210" y2="25" />
+    <line x1="220" y1="10" x2="220" y2="40" />
+    <line x1="200" y1="25" x2="230" y2="25" />
+    <line x1="200" y1="40" x2="230" y2="40" />
+    <circle cx="210" cy="25" r="2" fill="#4b72e0" />
+    <circle cx="220" cy="40" r="2" fill="#4b72e0" />
+  </g>
+</svg>

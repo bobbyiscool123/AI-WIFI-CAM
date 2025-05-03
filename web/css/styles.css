@@ -40,6 +40,16 @@ header {
     border-bottom: 1px solid var(--border-color);
 }
 
+.logo-container {
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    height: 40px;
+    width: auto;
+}
+
 h1, h2 {
     color: var(--primary-color);
 }
@@ -171,7 +181,7 @@ main {
     font-weight: bold;
 }
 
-.settings-group select, 
+.settings-group select,
 .settings-group input[type="range"] {
     width: 100%;
     padding: 8px;
@@ -330,6 +340,14 @@ footer {
     padding: 20px 0;
     border-top: 1px solid var(--border-color);
     font-size: 14px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.footer-logo {
+    margin-bottom: 5px;
 }
 
 footer a {
@@ -346,12 +364,12 @@ footer a:hover {
     main {
         grid-template-columns: 1fr;
     }
-    
+
     .video-container {
         grid-column: 1;
         grid-row: 1;
     }
-    
+
     .settings-panel, .info-panel {
         grid-column: 1;
     }
