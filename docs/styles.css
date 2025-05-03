@@ -182,10 +182,18 @@ body {
     background-color: white;
 }
 
+.dark-mode .features {
+    background-color: var(--dark-color);
+}
+
 .section-title {
     text-align: center;
     margin-bottom: 3rem;
     color: var(--dark-color);
+}
+
+.dark-mode .section-title {
+    color: var(--text-color);
 }
 
 .section-title h2 {
@@ -211,6 +219,11 @@ body {
     padding: 2rem;
     box-shadow: var(--shadow);
     transition: var(--transition);
+    color: var(--text-color);
+}
+
+.dark-mode .feature-card {
+    background-color: #1e1e30; /* Darker than --light-color for better contrast */
 }
 
 .feature-card:hover {
@@ -229,6 +242,10 @@ body {
     color: var(--dark-color);
 }
 
+.dark-mode .feature-card h3 {
+    color: var(--text-color);
+}
+
 /* Content Sections */
 .content-section {
     padding: 4rem 0;
@@ -240,6 +257,14 @@ body {
 
 .content-section:nth-child(odd) {
     background-color: white;
+}
+
+.dark-mode .content-section:nth-child(even) {
+    background-color: var(--dark-color);
+}
+
+.dark-mode .content-section:nth-child(odd) {
+    background-color: #1e1e30; /* Darker than --light-color for better contrast */
 }
 
 .content-grid {
@@ -271,14 +296,26 @@ body {
     color: var(--dark-color);
 }
 
+.dark-mode .content-text h2 {
+    color: var(--text-color);
+}
+
 .content-text p {
     margin-bottom: 1.5rem;
+}
+
+.dark-mode .content-text {
+    color: var(--text-color);
 }
 
 /* Documentation Styles */
 .documentation {
     padding: 4rem 0;
     background-color: white;
+}
+
+.dark-mode .documentation {
+    background-color: var(--dark-color);
 }
 
 .doc-container {
@@ -297,11 +334,19 @@ body {
     box-shadow: var(--shadow);
 }
 
+.dark-mode .doc-sidebar {
+    background-color: #1e1e30; /* Darker than --light-color for better contrast */
+}
+
 .doc-sidebar h3 {
     margin-bottom: 1rem;
     color: var(--dark-color);
     padding-bottom: 0.5rem;
     border-bottom: 2px solid var(--primary-color);
+}
+
+.dark-mode .doc-sidebar h3 {
+    color: var(--text-color);
 }
 
 .doc-sidebar ul {
@@ -334,6 +379,11 @@ body {
     box-shadow: var(--shadow);
 }
 
+.dark-mode .doc-content {
+    background-color: #1e1e30; /* Darker than --light-color for better contrast */
+    color: var(--text-color);
+}
+
 .doc-content h2 {
     margin-bottom: 1.5rem;
     color: var(--dark-color);
@@ -341,9 +391,17 @@ body {
     border-bottom: 2px solid var(--primary-color);
 }
 
+.dark-mode .doc-content h2 {
+    color: var(--text-color);
+}
+
 .doc-content h3 {
     margin: 2rem 0 1rem;
     color: var(--dark-color);
+}
+
+.dark-mode .doc-content h3 {
+    color: var(--text-color);
 }
 
 .doc-content p,
@@ -376,9 +434,18 @@ body {
     margin: 1.5rem 0;
 }
 
+.dark-mode .doc-content pre {
+    background-color: #1a1a25;
+    color: #e0e0e0;
+}
+
 .doc-content code {
     font-family: 'Courier New', Courier, monospace;
     color: var(--accent-color);
+}
+
+.dark-mode .doc-content code {
+    color: #ff8a8a;
 }
 
 /* Tables */
@@ -397,6 +464,10 @@ th, td {
     border-bottom: 1px solid #ddd;
 }
 
+.dark-mode th, .dark-mode td {
+    border-bottom: 1px solid #444;
+}
+
 th {
     background-color: var(--primary-color);
     color: white;
@@ -406,8 +477,16 @@ tr:nth-child(even) {
     background-color: rgba(0, 0, 0, 0.05);
 }
 
+.dark-mode tr:nth-child(even) {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
 tr:hover {
     background-color: rgba(0, 0, 0, 0.1);
+}
+
+.dark-mode tr:hover {
+    background-color: rgba(255, 255, 255, 0.1);
 }
 
 /* FAQ Section */
@@ -416,12 +495,20 @@ tr:hover {
     background-color: white;
 }
 
+.dark-mode .faq {
+    background-color: var(--dark-color);
+}
+
 .faq-item {
     margin-bottom: 1.5rem;
     background-color: var(--light-color);
     border-radius: var(--border-radius);
     overflow: hidden;
     box-shadow: var(--shadow);
+}
+
+.dark-mode .faq-item {
+    background-color: #1e1e30; /* Darker than --light-color for better contrast */
 }
 
 .faq-question {
