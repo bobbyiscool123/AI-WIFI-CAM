@@ -1,114 +1,114 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg width="800" height="600" xmlns="http://www.w3.org/2000/svg">
+<svg width="900" height="600" xmlns="http://www.w3.org/2000/svg">
   <!-- Background -->
-  <rect width="800" height="600" fill="#f8f9fa"/>
-  
+  <rect width="900" height="600" fill="#f8f9fa"/>
+
   <!-- Title -->
-  <text x="400" y="50" font-family="Arial" font-size="24" text-anchor="middle" font-weight="bold">AI Processing Pipeline</text>
-  
+  <text x="450" y="50" font-family="Arial" font-size="24" text-anchor="middle" font-weight="bold">AI Processing Pipeline</text>
+
   <!-- Input Image -->
-  <rect x="50" y="150" width="120" height="90" rx="5" fill="#e3f2fd" stroke="#1565c0" stroke-width="2"/>
-  <text x="110" y="200" font-family="Arial" font-size="14" text-anchor="middle">Input Frame</text>
-  
+  <rect x="80" y="150" width="120" height="90" rx="5" fill="#e3f2fd" stroke="#1565c0" stroke-width="2"/>
+  <text x="140" y="200" font-family="Arial" font-size="14" text-anchor="middle">Input Frame</text>
+
   <!-- Preprocessing -->
-  <rect x="220" y="150" width="120" height="90" rx="5" fill="#e8f5e9" stroke="#2e7d32" stroke-width="2"/>
-  <text x="280" y="185" font-family="Arial" font-size="14" text-anchor="middle">Preprocessing</text>
-  <text x="280" y="205" font-family="Arial" font-size="12" text-anchor="middle">Resize</text>
-  <text x="280" y="225" font-family="Arial" font-size="12" text-anchor="middle">Normalize</text>
-  
+  <rect x="250" y="150" width="120" height="90" rx="5" fill="#e8f5e9" stroke="#2e7d32" stroke-width="2"/>
+  <text x="310" y="185" font-family="Arial" font-size="14" text-anchor="middle">Preprocessing</text>
+  <text x="310" y="205" font-family="Arial" font-size="12" text-anchor="middle">Resize</text>
+  <text x="310" y="225" font-family="Arial" font-size="12" text-anchor="middle">Normalize</text>
+
   <!-- AI Model -->
-  <rect x="390" y="150" width="120" height="90" rx="5" fill="#fff3e0" stroke="#e65100" stroke-width="2"/>
-  <text x="450" y="185" font-family="Arial" font-size="14" text-anchor="middle">AI Model</text>
-  <text x="450" y="205" font-family="Arial" font-size="12" text-anchor="middle">YOLOv4</text>
-  <text x="450" y="225" font-family="Arial" font-size="12" text-anchor="middle">MediaPipe</text>
-  
+  <rect x="420" y="150" width="120" height="90" rx="5" fill="#fff3e0" stroke="#e65100" stroke-width="2"/>
+  <text x="480" y="185" font-family="Arial" font-size="14" text-anchor="middle">AI Model</text>
+  <text x="480" y="205" font-family="Arial" font-size="12" text-anchor="middle">YOLOv4</text>
+  <text x="480" y="225" font-family="Arial" font-size="12" text-anchor="middle">MediaPipe</text>
+
   <!-- Post-processing -->
-  <rect x="560" y="150" width="120" height="90" rx="5" fill="#f3e5f5" stroke="#6a1b9a" stroke-width="2"/>
-  <text x="620" y="185" font-family="Arial" font-size="14" text-anchor="middle">Post-processing</text>
-  <text x="620" y="205" font-family="Arial" font-size="12" text-anchor="middle">NMS</text>
-  <text x="620" y="225" font-family="Arial" font-size="12" text-anchor="middle">Filtering</text>
-  
+  <rect x="590" y="150" width="120" height="90" rx="5" fill="#f3e5f5" stroke="#6a1b9a" stroke-width="2"/>
+  <text x="650" y="185" font-family="Arial" font-size="14" text-anchor="middle">Post-processing</text>
+  <text x="650" y="205" font-family="Arial" font-size="12" text-anchor="middle">NMS</text>
+  <text x="650" y="225" font-family="Arial" font-size="12" text-anchor="middle">Filtering</text>
+
   <!-- Output Image -->
-  <rect x="730" y="150" width="120" height="90" rx="5" fill="#e8eaf6" stroke="#283593" stroke-width="2"/>
-  <text x="790" y="200" font-family="Arial" font-size="14" text-anchor="middle">Output Frame</text>
-  
+  <rect x="760" y="150" width="120" height="90" rx="5" fill="#e8eaf6" stroke="#283593" stroke-width="2"/>
+  <text x="820" y="200" font-family="Arial" font-size="14" text-anchor="middle">Output Frame</text>
+
   <!-- Flow Arrows -->
-  <line x1="170" y1="195" x2="220" y2="195" stroke="#1565c0" stroke-width="2"/>
-  <polygon points="210,190 220,195 210,200" fill="#1565c0"/>
-  
-  <line x1="340" y1="195" x2="390" y2="195" stroke="#2e7d32" stroke-width="2"/>
-  <polygon points="380,190 390,195 380,200" fill="#2e7d32"/>
-  
-  <line x1="510" y1="195" x2="560" y2="195" stroke="#e65100" stroke-width="2"/>
-  <polygon points="550,190 560,195 550,200" fill="#e65100"/>
-  
-  <line x1="680" y1="195" x2="730" y2="195" stroke="#6a1b9a" stroke-width="2"/>
-  <polygon points="720,190 730,195 720,200" fill="#6a1b9a"/>
-  
+  <line x1="200" y1="195" x2="250" y2="195" stroke="#1565c0" stroke-width="2"/>
+  <polygon points="240,190 250,195 240,200" fill="#1565c0"/>
+
+  <line x1="370" y1="195" x2="420" y2="195" stroke="#2e7d32" stroke-width="2"/>
+  <polygon points="410,190 420,195 410,200" fill="#2e7d32"/>
+
+  <line x1="540" y1="195" x2="590" y2="195" stroke="#e65100" stroke-width="2"/>
+  <polygon points="580,190 590,195 580,200" fill="#e65100"/>
+
+  <line x1="710" y1="195" x2="760" y2="195" stroke="#6a1b9a" stroke-width="2"/>
+  <polygon points="750,190 760,195 750,200" fill="#6a1b9a"/>
+
   <!-- YOLOv4 Details -->
-  <rect x="100" y="300" width="600" height="120" rx="10" fill="#fff8e1" stroke="#ff6f00" stroke-width="2"/>
-  <text x="400" y="325" font-family="Arial" font-size="18" text-anchor="middle" font-weight="bold">YOLOv4 Object Detection</text>
-  
+  <rect x="150" y="300" width="700" height="120" rx="10" fill="#fff8e1" stroke="#ff6f00" stroke-width="2"/>
+  <text x="500" y="325" font-family="Arial" font-size="18" text-anchor="middle" font-weight="bold">YOLOv4 Object Detection</text>
+
   <!-- YOLOv4 Architecture (simplified) -->
-  <rect x="120" y="345" width="80" height="50" rx="5" fill="#ffffff" stroke="#ff6f00"/>
-  <text x="160" y="375" font-family="Arial" font-size="12" text-anchor="middle">Input</text>
-  
-  <rect x="220" y="345" width="80" height="50" rx="5" fill="#ffffff" stroke="#ff6f00"/>
-  <text x="260" y="375" font-family="Arial" font-size="12" text-anchor="middle">Backbone</text>
-  
-  <rect x="320" y="345" width="80" height="50" rx="5" fill="#ffffff" stroke="#ff6f00"/>
-  <text x="360" y="375" font-family="Arial" font-size="12" text-anchor="middle">Neck</text>
-  
-  <rect x="420" y="345" width="80" height="50" rx="5" fill="#ffffff" stroke="#ff6f00"/>
-  <text x="460" y="375" font-family="Arial" font-size="12" text-anchor="middle">Head</text>
-  
-  <rect x="520" y="345" width="80" height="50" rx="5" fill="#ffffff" stroke="#ff6f00"/>
-  <text x="560" y="365" font-family="Arial" font-size="12" text-anchor="middle">Bounding</text>
-  <text x="560" y="385" font-family="Arial" font-size="12" text-anchor="middle">Boxes</text>
-  
+  <rect x="180" y="345" width="100" height="50" rx="5" fill="#ffffff" stroke="#ff6f00"/>
+  <text x="230" y="375" font-family="Arial" font-size="12" text-anchor="middle">Input</text>
+
+  <rect x="300" y="345" width="100" height="50" rx="5" fill="#ffffff" stroke="#ff6f00"/>
+  <text x="350" y="375" font-family="Arial" font-size="12" text-anchor="middle">Backbone</text>
+
+  <rect x="420" y="345" width="100" height="50" rx="5" fill="#ffffff" stroke="#ff6f00"/>
+  <text x="470" y="375" font-family="Arial" font-size="12" text-anchor="middle">Neck</text>
+
+  <rect x="540" y="345" width="100" height="50" rx="5" fill="#ffffff" stroke="#ff6f00"/>
+  <text x="590" y="375" font-family="Arial" font-size="12" text-anchor="middle">Head</text>
+
+  <rect x="660" y="345" width="100" height="50" rx="5" fill="#ffffff" stroke="#ff6f00"/>
+  <text x="710" y="365" font-family="Arial" font-size="12" text-anchor="middle">Bounding</text>
+  <text x="710" y="385" font-family="Arial" font-size="12" text-anchor="middle">Boxes</text>
+
   <!-- YOLOv4 Flow -->
-  <line x1="200" y1="370" x2="220" y2="370" stroke="#ff6f00" stroke-width="2"/>
-  <polygon points="210,365 220,370 210,375" fill="#ff6f00"/>
-  
-  <line x1="300" y1="370" x2="320" y2="370" stroke="#ff6f00" stroke-width="2"/>
-  <polygon points="310,365 320,370 310,375" fill="#ff6f00"/>
-  
+  <line x1="280" y1="370" x2="300" y2="370" stroke="#ff6f00" stroke-width="2"/>
+  <polygon points="290,365 300,370 290,375" fill="#ff6f00"/>
+
   <line x1="400" y1="370" x2="420" y2="370" stroke="#ff6f00" stroke-width="2"/>
   <polygon points="410,365 420,370 410,375" fill="#ff6f00"/>
-  
-  <line x1="500" y1="370" x2="520" y2="370" stroke="#ff6f00" stroke-width="2"/>
-  <polygon points="510,365 520,370 510,375" fill="#ff6f00"/>
-  
+
+  <line x1="520" y1="370" x2="540" y2="370" stroke="#ff6f00" stroke-width="2"/>
+  <polygon points="530,365 540,370 530,375" fill="#ff6f00"/>
+
+  <line x1="640" y1="370" x2="660" y2="370" stroke="#ff6f00" stroke-width="2"/>
+  <polygon points="650,365 660,370 650,375" fill="#ff6f00"/>
+
   <!-- MediaPipe Details -->
-  <rect x="100" y="450" width="600" height="120" rx="10" fill="#e0f7fa" stroke="#006064" stroke-width="2"/>
-  <text x="400" y="475" font-family="Arial" font-size="18" text-anchor="middle" font-weight="bold">MediaPipe Processing</text>
-  
+  <rect x="150" y="450" width="700" height="120" rx="10" fill="#e0f7fa" stroke="#006064" stroke-width="2"/>
+  <text x="500" y="475" font-family="Arial" font-size="18" text-anchor="middle" font-weight="bold">MediaPipe Processing</text>
+
   <!-- MediaPipe Components -->
-  <rect x="120" y="495" width="100" height="50" rx="5" fill="#ffffff" stroke="#006064"/>
-  <text x="170" y="525" font-family="Arial" font-size="12" text-anchor="middle">Face Detection</text>
-  
-  <rect x="240" y="495" width="100" height="50" rx="5" fill="#ffffff" stroke="#006064"/>
-  <text x="290" y="525" font-family="Arial" font-size="12" text-anchor="middle">Face Landmarks</text>
-  
-  <rect x="360" y="495" width="100" height="50" rx="5" fill="#ffffff" stroke="#006064"/>
-  <text x="410" y="525" font-family="Arial" font-size="12" text-anchor="middle">Pose Estimation</text>
-  
-  <rect x="480" y="495" width="100" height="50" rx="5" fill="#ffffff" stroke="#006064"/>
-  <text x="530" y="525" font-family="Arial" font-size="12" text-anchor="middle">Hand Tracking</text>
-  
+  <rect x="180" y="495" width="130" height="50" rx="5" fill="#ffffff" stroke="#006064"/>
+  <text x="245" y="525" font-family="Arial" font-size="12" text-anchor="middle">Face Detection</text>
+
+  <rect x="330" y="495" width="130" height="50" rx="5" fill="#ffffff" stroke="#006064"/>
+  <text x="395" y="525" font-family="Arial" font-size="12" text-anchor="middle">Face Landmarks</text>
+
+  <rect x="480" y="495" width="130" height="50" rx="5" fill="#ffffff" stroke="#006064"/>
+  <text x="545" y="525" font-family="Arial" font-size="12" text-anchor="middle">Pose Estimation</text>
+
+  <rect x="630" y="495" width="130" height="50" rx="5" fill="#ffffff" stroke="#006064"/>
+  <text x="695" y="525" font-family="Arial" font-size="12" text-anchor="middle">Hand Tracking</text>
+
   <!-- Legend -->
-  <rect x="50" y="580" width="15" height="15" fill="#e3f2fd" stroke="#1565c0"/>
-  <text x="75" y="592" font-family="Arial" font-size="12">Input</text>
-  
-  <rect x="150" y="580" width="15" height="15" fill="#e8f5e9" stroke="#2e7d32"/>
-  <text x="175" y="592" font-family="Arial" font-size="12">Preprocessing</text>
-  
-  <rect x="300" y="580" width="15" height="15" fill="#fff3e0" stroke="#e65100"/>
-  <text x="325" y="592" font-family="Arial" font-size="12">AI Model</text>
-  
-  <rect x="450" y="580" width="15" height="15" fill="#f3e5f5" stroke="#6a1b9a"/>
-  <text x="475" y="592" font-family="Arial" font-size="12">Post-processing</text>
-  
-  <rect x="600" y="580" width="15" height="15" fill="#e8eaf6" stroke="#283593"/>
-  <text x="625" y="592" font-family="Arial" font-size="12">Output</text>
+  <rect x="100" y="580" width="15" height="15" fill="#e3f2fd" stroke="#1565c0"/>
+  <text x="125" y="592" font-family="Arial" font-size="12">Input</text>
+
+  <rect x="200" y="580" width="15" height="15" fill="#e8f5e9" stroke="#2e7d32"/>
+  <text x="225" y="592" font-family="Arial" font-size="12">Preprocessing</text>
+
+  <rect x="350" y="580" width="15" height="15" fill="#fff3e0" stroke="#e65100"/>
+  <text x="375" y="592" font-family="Arial" font-size="12">AI Model</text>
+
+  <rect x="500" y="580" width="15" height="15" fill="#f3e5f5" stroke="#6a1b9a"/>
+  <text x="525" y="592" font-family="Arial" font-size="12">Post-processing</text>
+
+  <rect x="650" y="580" width="15" height="15" fill="#e8eaf6" stroke="#283593"/>
+  <text x="675" y="592" font-family="Arial" font-size="12">Output</text>
 </svg>
