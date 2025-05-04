@@ -12,7 +12,7 @@
             overflow: hidden;
             font-family: Arial, sans-serif;
         }
-        
+
         .demo-container {
             width: 800px;
             height: 450px;
@@ -21,15 +21,15 @@
             overflow: hidden;
             background-color: #111;
         }
-        
+
         .camera-feed {
             width: 100%;
             height: 100%;
             position: relative;
-            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
                         url('https://source.unsplash.com/random/800x450/?room') center center/cover;
         }
-        
+
         .detection-box {
             position: absolute;
             border: 2px solid #00ff00;
@@ -37,7 +37,7 @@
             border-radius: 4px;
             animation: pulse 2s infinite;
         }
-        
+
         .detection-label {
             position: absolute;
             top: -25px;
@@ -49,28 +49,28 @@
             border-radius: 4px;
             font-weight: bold;
         }
-        
+
         .person-box {
             width: 80px;
             height: 200px;
             top: 150px;
             left: 300px;
         }
-        
+
         .chair-box {
             width: 120px;
             height: 100px;
             top: 250px;
             left: 500px;
         }
-        
+
         .laptop-box {
             width: 100px;
             height: 70px;
             top: 200px;
             left: 150px;
         }
-        
+
         .stats {
             position: absolute;
             top: 10px;
@@ -82,11 +82,11 @@
             font-size: 12px;
             font-family: monospace;
         }
-        
+
         .fps {
             color: #00ff00;
         }
-        
+
         .controls {
             position: absolute;
             bottom: 10px;
@@ -94,7 +94,7 @@
             display: flex;
             gap: 10px;
         }
-        
+
         .control-btn {
             width: 40px;
             height: 40px;
@@ -106,7 +106,7 @@
             color: white;
             cursor: pointer;
         }
-        
+
         .scanning-line {
             position: absolute;
             top: 0;
@@ -117,7 +117,7 @@
             box-shadow: 0 0 10px rgba(0, 255, 255, 0.7);
             animation: scan 3s linear infinite;
         }
-        
+
         @keyframes scan {
             0% {
                 top: 0;
@@ -126,7 +126,7 @@
                 top: 100%;
             }
         }
-        
+
         @keyframes pulse {
             0% {
                 box-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
@@ -138,11 +138,11 @@
                 box-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
             }
         }
-        
+
         .moving-box {
             animation: move 10s linear infinite;
         }
-        
+
         @keyframes move {
             0% {
                 transform: translateX(0);
@@ -154,7 +154,7 @@
                 transform: translateX(0);
             }
         }
-        
+
         .overlay {
             position: absolute;
             top: 0;
@@ -164,7 +164,7 @@
             background: radial-gradient(circle, transparent 50%, rgba(0, 0, 0, 0.5) 100%);
             pointer-events: none;
         }
-        
+
         .logo {
             position: absolute;
             bottom: 10px;
@@ -176,7 +176,7 @@
             padding: 5px 10px;
             border-radius: 4px;
         }
-        
+
         .logo span {
             color: #00ff00;
         }
@@ -186,41 +186,41 @@
     <div class="demo-container">
         <div class="camera-feed">
             <div class="scanning-line"></div>
-            
+
             <div class="detection-box person-box moving-box">
                 <div class="detection-label">Person: 98%</div>
             </div>
-            
+
             <div class="detection-box chair-box">
                 <div class="detection-label">Chair: 92%</div>
             </div>
-            
+
             <div class="detection-box laptop-box">
                 <div class="detection-label">Laptop: 95%</div>
             </div>
-            
+
             <div class="stats">
                 <div>Resolution: 800x450</div>
                 <div>Model: YOLOv4</div>
                 <div>Objects detected: 3</div>
                 <div class="fps">FPS: 24</div>
             </div>
-            
+
             <div class="controls">
                 <div class="control-btn">⚙️</div>
                 <div class="control-btn">📷</div>
                 <div class="control-btn">⏸️</div>
             </div>
-            
+
             <div class="overlay"></div>
-            
+
             <div class="logo">AI <span>WiFi</span> CAM</div>
         </div>
     </div>
-    
+
     <script>
-        // This script would capture this animation as a GIF
-        // For now, we'll just use this HTML file to demonstrate the concept
+        // This HTML animation is used to create the SVG animation
+        // We use SVG for better performance and scalability
     </script>
 </body>
 </html>

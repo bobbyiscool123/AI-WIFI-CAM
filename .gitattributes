@@ -28,6 +28,5 @@ run_ai_cam.bat text eol=crlf
 *.png binary
 *.jpg binary
 *.jpeg binary
-*.gif binary
 *.ico binary
 *.weights binary
