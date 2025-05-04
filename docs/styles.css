@@ -13,8 +13,8 @@
     --transition: all 0.3s ease;
     --border-radius: 8px;
     --max-width: 1200px;
-    --grid-color: rgba(124, 58, 237, 0.2); /* Purple grid - much more visible */
-    --grid-size: 25px; /* Larger grid size */
+    --grid-color: rgba(124, 58, 237, 0.4); /* Purple grid - extremely visible */
+    --grid-size: 15px; /* Smaller grid size */
     --grid-shadow: inset 0 0 30px rgba(0, 0, 0, 0.05);
     --gradient-start: #7c3aed; /* Purple */
     --gradient-end: #10b981; /* Emerald */
@@ -31,7 +31,7 @@
     --text-light: #94a3b8; /* Medium slate */
     --shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
     --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-    --grid-color: rgba(139, 92, 246, 0.15); /* Purple grid for dark mode - more visible */
+    --grid-color: rgba(139, 92, 246, 0.3); /* Purple grid for dark mode - extremely visible */
     --grid-shadow: inset 0 0 30px rgba(0, 0, 0, 0.3);
     --gradient-start: #8b5cf6; /* Lighter purple */
     --gradient-end: #34d399; /* Lighter emerald */
@@ -744,8 +744,8 @@ body::before {
     overflow: hidden;
     z-index: 1;
     background-image:
-        linear-gradient(rgba(124, 58, 237, 0.1) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(124, 58, 237, 0.1) 1px, transparent 1px);
+        linear-gradient(var(--grid-color) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
     background-size: var(--grid-size) var(--grid-size);
     background-position: 0 0;
 }
@@ -890,8 +890,8 @@ body::before {
     position: relative;
     overflow: hidden;
     background-image:
-        linear-gradient(rgba(124, 58, 237, 0.1) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(124, 58, 237, 0.1) 1px, transparent 1px);
+        linear-gradient(var(--grid-color) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
     background-size: var(--grid-size) var(--grid-size);
     background-position: 0 0;
 }
@@ -951,8 +951,8 @@ body::before {
     position: relative;
     overflow: hidden;
     background-image:
-        linear-gradient(rgba(124, 58, 237, 0.1) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(124, 58, 237, 0.1) 1px, transparent 1px);
+        linear-gradient(var(--grid-color) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
     background-size: var(--grid-size) var(--grid-size);
     background-position: 0 0;
 }
@@ -1033,8 +1033,8 @@ body::before {
     overflow-x: auto;
     margin: 1.5rem 0;
     background-image:
-        linear-gradient(rgba(124, 58, 237, 0.1) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(124, 58, 237, 0.1) 1px, transparent 1px);
+        linear-gradient(var(--grid-color) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
     background-size: var(--grid-size) var(--grid-size);
     background-position: 0 0;
 }
@@ -1064,8 +1064,8 @@ table {
     overflow: hidden;
     background-color: #ffffff;
     background-image:
-        linear-gradient(rgba(124, 58, 237, 0.1) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(124, 58, 237, 0.1) 1px, transparent 1px);
+        linear-gradient(var(--grid-color) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
     background-size: var(--grid-size) var(--grid-size);
     background-position: 0 0;
 }
@@ -1131,8 +1131,8 @@ tr:hover {
     border: 1px solid rgba(255, 255, 255, 0.2);
     transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     background-image:
-        linear-gradient(rgba(124, 58, 237, 0.1) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(124, 58, 237, 0.1) 1px, transparent 1px);
+        linear-gradient(var(--grid-color) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
     background-size: var(--grid-size) var(--grid-size);
     background-position: 0 0;
 }
