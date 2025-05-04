@@ -37,6 +37,12 @@
     --gradient-end: #34d399; /* Lighter emerald */
 }
 
+.dark-mode body {
+    background-image:
+        linear-gradient(var(--grid-color) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -51,6 +57,11 @@ body {
     transition: var(--transition);
     overflow-x: hidden;
     position: relative;
+    background-image:
+        linear-gradient(var(--grid-color) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+    background-size: var(--grid-size) var(--grid-size);
+    background-position: 0 0;
 }
 
 body::before {
@@ -743,17 +754,11 @@ body::before {
     position: relative;
     overflow: hidden;
     z-index: 1;
-    background-image:
-        linear-gradient(var(--grid-color) 1px, transparent 1px),
-        linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
-    background-size: var(--grid-size) var(--grid-size);
-    background-position: 0 0;
 }
 
 .dark-mode .feature-card {
     background-color: rgba(30, 30, 48, 0.9); /* Darker than --light-color for better contrast */
     border: 1px solid rgba(255, 255, 255, 0.05);
-    background-image: none;
 }
 
 .feature-card:hover {
@@ -889,11 +894,6 @@ body::before {
     transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     position: relative;
     overflow: hidden;
-    background-image:
-        linear-gradient(var(--grid-color) 1px, transparent 1px),
-        linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
-    background-size: var(--grid-size) var(--grid-size);
-    background-position: 0 0;
 }
 
 .doc-sidebar:hover {
@@ -904,7 +904,6 @@ body::before {
 .dark-mode .doc-sidebar {
     background-color: rgba(30, 30, 48, 0.9); /* Darker than --light-color for better contrast */
     border: 1px solid rgba(255, 255, 255, 0.05);
-    background-image: none;
 }
 
 .doc-sidebar h3 {
@@ -950,11 +949,6 @@ body::before {
     transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     position: relative;
     overflow: hidden;
-    background-image:
-        linear-gradient(var(--grid-color) 1px, transparent 1px),
-        linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
-    background-size: var(--grid-size) var(--grid-size);
-    background-position: 0 0;
 }
 
 .doc-content:hover {
@@ -966,7 +960,6 @@ body::before {
     background-color: rgba(30, 30, 48, 0.9); /* Darker than --light-color for better contrast */
     color: var(--text-color);
     border: 1px solid rgba(255, 255, 255, 0.05);
-    background-image: none;
 }
 
 .doc-content h2 {
@@ -1032,17 +1025,11 @@ body::before {
     border-radius: var(--border-radius);
     overflow-x: auto;
     margin: 1.5rem 0;
-    background-image:
-        linear-gradient(var(--grid-color) 1px, transparent 1px),
-        linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
-    background-size: var(--grid-size) var(--grid-size);
-    background-position: 0 0;
 }
 
 .dark-mode .doc-content pre {
     background-color: #1a1a25;
     color: #e0e0e0;
-    background-image: none;
 }
 
 .doc-content code {
@@ -1063,11 +1050,6 @@ table {
     border-radius: var(--border-radius);
     overflow: hidden;
     background-color: #ffffff;
-    background-image:
-        linear-gradient(var(--grid-color) 1px, transparent 1px),
-        linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
-    background-size: var(--grid-size) var(--grid-size);
-    background-position: 0 0;
 }
 
 th, td {
@@ -1078,7 +1060,6 @@ th, td {
 
 .dark-mode table {
     background-color: #1a1a25;
-    background-image: none;
 }
 
 .dark-mode th, .dark-mode td {
@@ -1130,11 +1111,6 @@ tr:hover {
     box-shadow: var(--glass-shadow);
     border: 1px solid rgba(255, 255, 255, 0.2);
     transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-    background-image:
-        linear-gradient(var(--grid-color) 1px, transparent 1px),
-        linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
-    background-size: var(--grid-size) var(--grid-size);
-    background-position: 0 0;
 }
 
 .faq-item:hover {
@@ -1145,7 +1121,6 @@ tr:hover {
 .dark-mode .faq-item {
     background-color: rgba(30, 30, 48, 0.9); /* Darker than --light-color for better contrast */
     border: 1px solid rgba(255, 255, 255, 0.05);
-    background-image: none;
 }
 
 .faq-question {
