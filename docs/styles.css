@@ -13,7 +13,7 @@
     --transition: all 0.3s ease;
     --border-radius: 8px;
     --max-width: 1200px;
-    --grid-color: rgba(124, 58, 237, 0.05); /* Purple grid */
+    --grid-color: rgba(124, 58, 237, 0.1); /* Purple grid - more visible */
     --grid-size: 20px;
     --grid-shadow: inset 0 0 30px rgba(0, 0, 0, 0.05);
     --gradient-start: #7c3aed; /* Purple */
@@ -31,7 +31,7 @@
     --text-light: #94a3b8; /* Medium slate */
     --shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
     --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-    --grid-color: rgba(139, 92, 246, 0.07); /* Purple grid for dark mode */
+    --grid-color: rgba(139, 92, 246, 0.15); /* Purple grid for dark mode - more visible */
     --grid-shadow: inset 0 0 30px rgba(0, 0, 0, 0.3);
     --gradient-start: #8b5cf6; /* Lighter purple */
     --gradient-end: #34d399; /* Lighter emerald */
@@ -48,14 +48,17 @@ body {
     line-height: 1.6;
     color: var(--text-color);
     background-color: var(--light-color);
+    background-attachment: fixed;
     background-image:
         linear-gradient(var(--grid-color) 1px, transparent 1px),
         linear-gradient(90deg, var(--grid-color) 1px, transparent 1px),
         radial-gradient(circle at 50% 50%, var(--grid-color) 1px, transparent 1px);
     background-size: var(--grid-size) var(--grid-size), var(--grid-size) var(--grid-size), calc(var(--grid-size) * 5) calc(var(--grid-size) * 5);
+    background-position: 0 0, 0 0, 0 0;
     transition: var(--transition);
     overflow-x: hidden;
     position: relative;
+    will-change: transform;
 }
 
 body::before {
@@ -77,9 +80,10 @@ body::after {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, rgba(124, 58, 237, 0.03) 0%, rgba(16, 185, 129, 0.03) 100%);
+    background: linear-gradient(135deg, rgba(124, 58, 237, 0.05) 0%, rgba(16, 185, 129, 0.05) 100%);
     pointer-events: none;
     z-index: -1;
+    will-change: transform;
 }
 
 .container {
@@ -930,8 +934,11 @@ body::after {
         linear-gradient(var(--grid-color) 1px, transparent 1px),
         linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
     background-size: var(--grid-size) var(--grid-size);
-    opacity: 0.5;
+    background-attachment: fixed;
+    background-position: 0 0;
+    opacity: 0.7;
     z-index: -1;
+    will-change: transform;
 }
 
 .doc-sidebar:hover {
@@ -948,7 +955,10 @@ body::after {
     background-image:
         linear-gradient(var(--grid-color) 1px, transparent 1px),
         linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
-    opacity: 0.3;
+    opacity: 0.5;
+    background-attachment: fixed;
+    background-position: 0 0;
+    will-change: transform;
 }
 
 .doc-sidebar h3 {
@@ -1009,8 +1019,11 @@ body::after {
         linear-gradient(var(--grid-color) 1px, transparent 1px),
         linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
     background-size: var(--grid-size) var(--grid-size);
-    opacity: 0.5;
+    background-attachment: fixed;
+    background-position: 0 0;
+    opacity: 0.7;
     z-index: -1;
+    will-change: transform;
 }
 
 .doc-content:hover {
@@ -1028,7 +1041,10 @@ body::after {
     background-image:
         linear-gradient(var(--grid-color) 1px, transparent 1px),
         linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
-    opacity: 0.3;
+    opacity: 0.5;
+    background-attachment: fixed;
+    background-position: 0 0;
+    will-change: transform;
 }
 
 .doc-content h2 {
@@ -1249,8 +1265,11 @@ footer::before {
         linear-gradient(var(--grid-color) 1px, transparent 1px),
         linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
     background-size: var(--grid-size) var(--grid-size);
-    opacity: 0.1;
+    background-attachment: fixed;
+    background-position: 0 0;
+    opacity: 0.15;
     z-index: 0;
+    will-change: transform;
 }
 
 .footer-container {

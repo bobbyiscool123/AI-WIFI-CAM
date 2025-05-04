@@ -1,6 +1,34 @@
 // AI WiFi CAM - Main JavaScript
 
 document.addEventListener('DOMContentLoaded', function() {
+    // Force grid pattern to remain visible by adding a small animation
+    function ensureGridVisibility() {
+        // Add a tiny transform to force hardware acceleration and keep grid visible
+        document.body.style.transform = 'translateZ(0)';
+
+        // Add a small animation to the grid elements to keep them rendered
+        const gridElements = document.querySelectorAll('.doc-content, .doc-sidebar, footer');
+        gridElements.forEach(el => {
+            // Force a repaint by toggling a harmless CSS property
+            el.style.willChange = 'transform';
+            setTimeout(() => {
+                el.style.willChange = 'auto';
+                setTimeout(() => {
+                    el.style.willChange = 'transform';
+                }, 100);
+            }, 100);
+        });
+    }
+
+    // Run initially
+    ensureGridVisibility();
+
+    // Run periodically to ensure grid stays visible
+    setInterval(ensureGridVisibility, 5000);
+
+    // Also run on scroll and resize events
+    window.addEventListener('scroll', ensureGridVisibility);
+    window.addEventListener('resize', ensureGridVisibility);
     // Mobile Navigation Toggle
     const mobileToggle = document.querySelector('.mobile-toggle');
     const navLinks = document.querySelector('.nav-links');
