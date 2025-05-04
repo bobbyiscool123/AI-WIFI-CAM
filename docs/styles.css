@@ -754,11 +754,13 @@ body::before {
     position: relative;
     overflow: hidden;
     z-index: 1;
+    background-image: none; /* Explicitly remove grid pattern */
 }
 
 .dark-mode .feature-card {
     background-color: rgba(30, 30, 48, 0.9); /* Darker than --light-color for better contrast */
     border: 1px solid rgba(255, 255, 255, 0.05);
+    background-image: none; /* Explicitly remove grid pattern */
 }
 
 .feature-card:hover {
@@ -894,6 +896,7 @@ body::before {
     transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     position: relative;
     overflow: hidden;
+    background-image: none; /* Explicitly remove grid pattern */
 }
 
 .doc-sidebar:hover {
@@ -904,6 +907,7 @@ body::before {
 .dark-mode .doc-sidebar {
     background-color: rgba(30, 30, 48, 0.9); /* Darker than --light-color for better contrast */
     border: 1px solid rgba(255, 255, 255, 0.05);
+    background-image: none; /* Explicitly remove grid pattern */
 }
 
 .doc-sidebar h3 {
@@ -949,6 +953,7 @@ body::before {
     transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     position: relative;
     overflow: hidden;
+    background-image: none; /* Explicitly remove grid pattern */
 }
 
 .doc-content:hover {
@@ -960,6 +965,7 @@ body::before {
     background-color: rgba(30, 30, 48, 0.9); /* Darker than --light-color for better contrast */
     color: var(--text-color);
     border: 1px solid rgba(255, 255, 255, 0.05);
+    background-image: none; /* Explicitly remove grid pattern */
 }
 
 .doc-content h2 {
@@ -1025,11 +1031,13 @@ body::before {
     border-radius: var(--border-radius);
     overflow-x: auto;
     margin: 1.5rem 0;
+    background-image: none; /* Explicitly remove grid pattern */
 }
 
 .dark-mode .doc-content pre {
     background-color: #1a1a25;
     color: #e0e0e0;
+    background-image: none; /* Explicitly remove grid pattern */
 }
 
 .doc-content code {
@@ -1050,6 +1058,7 @@ table {
     border-radius: var(--border-radius);
     overflow: hidden;
     background-color: #ffffff;
+    background-image: none; /* Explicitly remove grid pattern */
 }
 
 th, td {
@@ -1060,6 +1069,7 @@ th, td {
 
 .dark-mode table {
     background-color: #1a1a25;
+    background-image: none; /* Explicitly remove grid pattern */
 }
 
 .dark-mode th, .dark-mode td {
@@ -1111,6 +1121,7 @@ tr:hover {
     box-shadow: var(--glass-shadow);
     border: 1px solid rgba(255, 255, 255, 0.2);
     transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    background-image: none; /* Explicitly remove grid pattern */
 }
 
 .faq-item:hover {
@@ -1121,6 +1132,7 @@ tr:hover {
 .dark-mode .faq-item {
     background-color: rgba(30, 30, 48, 0.9); /* Darker than --light-color for better contrast */
     border: 1px solid rgba(255, 255, 255, 0.05);
+    background-image: none; /* Explicitly remove grid pattern */
 }
 
 .faq-question {
