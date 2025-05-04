@@ -1,0 +1,1 @@
+We need to create a proper placeholder GIF for the demo section. Since we can't directly create a GIF file through text, we'll use a base64 encoded placeholder image and convert it to a GIF file.
