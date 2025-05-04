@@ -24,6 +24,8 @@
                 <li><a href="usage.html">Usage</a></li>
                 <li><a href="troubleshooting.html">Troubleshooting</a></li>
                 <li><a href="qa.html" class="active">Q&A</a></li>
+                <li><a href="esp32cam_stream.html">ESP32-CAM Stream</a></li>
+                <li><a href="web_interface.html">Web Interface</a></li>
             </ul>
             <button class="theme-toggle" title="Toggle dark/light mode">
                 <i class="fas fa-moon"></i>
@@ -48,7 +50,7 @@
                 <h2>AI Models</h2>
                 <p>Questions about the AI models used in the project</p>
             </div>
-            
+
             <div class="faq-item active">
                 <div class="faq-question">
                     <h3>What are the coco.names, yolov4.cfg, and yolov4.weights files?</h3>
@@ -63,7 +65,7 @@
                     </ul>
                 </div>
             </div>
-            
+
             <div class="faq-item">
                 <div class="faq-question">
                     <h3>Is yolov4.weights pre-trained?</h3>
@@ -74,7 +76,7 @@
                     <p>The pre-trained weights allow you to use the model immediately for object detection without having to train it yourself, which would require significant computational resources and expertise.</p>
                 </div>
             </div>
-            
+
             <div class="faq-item">
                 <div class="faq-question">
                     <h3>What objects can the YOLOv4 model detect?</h3>
@@ -174,12 +176,12 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="section-title">
                 <h2>Project Structure</h2>
                 <p>Questions about the organization and structure of the project</p>
             </div>
-            
+
             <div class="faq-item">
                 <div class="faq-question">
                     <h3>Why is the models directory excluded from Git?</h3>
@@ -195,7 +197,7 @@
                     </ol>
                 </div>
             </div>
-            
+
             <div class="faq-item">
                 <div class="faq-question">
                     <h3>What is the USER.md file?</h3>
@@ -214,12 +216,12 @@
                     <p>The USER.md file is listed in the .gitignore file, which means it's not tracked by Git. This could be because it's considered a personal configuration file, it's generated automatically, or it's meant to be customized by each user for their specific setup.</p>
                 </div>
             </div>
-            
+
             <div class="section-title">
                 <h2>Hardware</h2>
                 <p>Questions about the hardware components</p>
             </div>
-            
+
             <div class="faq-item">
                 <div class="faq-question">
                     <h3>What ESP32-CAM model should I use?</h3>
@@ -238,7 +240,7 @@
                     <p>When purchasing an ESP32-CAM, make sure it includes the camera module and has the standard pinout for compatibility with the project.</p>
                 </div>
             </div>
-            
+
             <div class="faq-item">
                 <div class="faq-question">
                     <h3>Do I need a special power supply for the ESP32-CAM?</h3>
@@ -255,12 +257,12 @@
                     <p>Avoid powering the ESP32-CAM directly from a computer's USB port, as some ports may not provide enough current, leading to unstable operation.</p>
                 </div>
             </div>
-            
+
             <div class="section-title">
                 <h2>Software</h2>
                 <p>Questions about the software components</p>
             </div>
-            
+
             <div class="faq-item">
                 <div class="faq-question">
                     <h3>What are the minimum PC requirements?</h3>
@@ -308,7 +310,7 @@
                     <p>For the best performance with YOLOv4, a dedicated GPU with CUDA support is highly recommended. Without GPU acceleration, YOLOv4 will run much slower, resulting in lower frame rates.</p>
                 </div>
             </div>
-            
+
             <div class="faq-item">
                 <div class="faq-question">
                     <h3>Can I use multiple ESP32-CAMs with one PC?</h3>
@@ -327,12 +329,12 @@ python pc_code/stream_receiver.py --port 8081 --cam-id cam2</code></pre>
                     <p>Keep in mind that running multiple AI models simultaneously can be resource-intensive, especially on less powerful PCs. If you're using multiple cameras, you might need to reduce the resolution or frame rate to maintain performance.</p>
                 </div>
             </div>
-            
+
             <div class="section-title">
                 <h2>Usage</h2>
                 <p>Questions about using the system</p>
             </div>
-            
+
             <div class="faq-item">
                 <div class="faq-question">
                     <h3>What is the maximum range between ESP32-CAM and PC?</h3>
@@ -359,7 +361,7 @@ python pc_code/stream_receiver.py --port 8081 --cam-id cam2</code></pre>
                     </ul>
                 </div>
             </div>
-            
+
             <div class="faq-item">
                 <div class="faq-question">
                     <h3>Can I access the system remotely over the internet?</h3>
@@ -382,7 +384,7 @@ python pc_code/stream_receiver.py --port 8081 --cam-id cam2</code></pre>
                     <p>A safer alternative is to use a VPN to connect to your home network, then access the AI WiFi CAM system as if you were on the local network.</p>
                 </div>
             </div>
-            
+
             <div class="faq-item">
                 <div class="faq-question">
                     <h3>How can I improve detection accuracy?</h3>
@@ -435,6 +437,8 @@ python pc_code/stream_receiver.py --port 8081 --cam-id cam2</code></pre>
                     <li><a href="usage.html">Usage Guide</a></li>
                     <li><a href="troubleshooting.html">Troubleshooting</a></li>
                     <li><a href="qa.html">Q&A Document</a></li>
+                    <li><a href="esp32cam_stream.html">ESP32-CAM Stream</a></li>
+                    <li><a href="web_interface.html">Web Interface</a></li>
                 </ul>
             </div>
             <div class="footer-section">

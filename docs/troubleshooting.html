@@ -24,6 +24,8 @@
                 <li><a href="usage.html">Usage</a></li>
                 <li><a href="troubleshooting.html" class="active">Troubleshooting</a></li>
                 <li><a href="qa.html">Q&A</a></li>
+                <li><a href="esp32cam_stream.html">ESP32-CAM Stream</a></li>
+                <li><a href="web_interface.html">Web Interface</a></li>
             </ul>
             <button class="theme-toggle" title="Toggle dark/light mode">
                 <i class="fas fa-moon"></i>
@@ -57,13 +59,13 @@
                         <li><a href="#advanced-troubleshooting">Advanced Troubleshooting</a></li>
                     </ul>
                 </aside>
-                
+
                 <main class="doc-content">
                     <h2 id="esp32-issues">ESP32-CAM Issues</h2>
                     <p>
                         Issues related to the ESP32-CAM hardware and firmware.
                     </p>
-                    
+
                     <div class="faq-item active">
                         <div class="faq-question">
                             <h3>Cannot upload sketch to ESP32-CAM</h3>
@@ -88,7 +90,7 @@
                             </ol>
                         </div>
                     </div>
-                    
+
                     <div class="faq-item">
                         <div class="faq-question">
                             <h3>Camera initialization failure</h3>
@@ -111,7 +113,7 @@
                             </ol>
                         </div>
                     </div>
-                    
+
                     <div class="faq-item">
                         <div class="faq-question">
                             <h3>ESP32-CAM keeps restarting</h3>
@@ -134,12 +136,12 @@
                             </ol>
                         </div>
                     </div>
-                    
+
                     <h2 id="connection-issues">Connection Issues</h2>
                     <p>
                         Issues related to the connection between the ESP32-CAM and the PC.
                     </p>
-                    
+
                     <div class="faq-item">
                         <div class="faq-question">
                             <h3>ESP32-CAM cannot connect to WiFi</h3>
@@ -162,7 +164,7 @@
                             </ol>
                         </div>
                     </div>
-                    
+
                     <div class="faq-item">
                         <div class="faq-question">
                             <h3>PC cannot connect to ESP32-CAM</h3>
@@ -186,7 +188,7 @@
                             </ol>
                         </div>
                     </div>
-                    
+
                     <div class="faq-item">
                         <div class="faq-question">
                             <h3>Connection drops frequently</h3>
@@ -211,12 +213,86 @@
                             </ol>
                         </div>
                     </div>
-                    
+
+                    <h2 id="library-installation-issues">Library Installation Issues</h2>
+                    <p>
+                        Issues related to installing the required libraries for the ESP32-CAM.
+                    </p>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>Installing Libraries for ESP32-CAM Project</h3>
+                            <span class="faq-toggle"><i class="fas fa-chevron-down"></i></span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>If you're having trouble installing the required libraries for the ESP32-CAM project, follow these detailed steps:</p>
+
+                            <h4>1. Install the ESP32 Board Support Package</h4>
+                            <ol>
+                                <li>Open Arduino IDE</li>
+                                <li>Go to <strong>File > Preferences</strong></li>
+                                <li>In the "Additional Boards Manager URLs" field, add:
+                                    <pre><code>https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_index.json</code></pre>
+                                </li>
+                                <li>Click "OK"</li>
+                                <li>Go to <strong>Tools > Board > Boards Manager</strong></li>
+                                <li>Search for "esp32"</li>
+                                <li>Install "ESP32 by Espressif Systems" (version 2.0.0 or newer)</li>
+                            </ol>
+
+                            <h4>2. Install the WebSockets Library</h4>
+                            <ol>
+                                <li>Go to <strong>Sketch > Include Library > Manage Libraries</strong></li>
+                                <li>Search for "WebSockets"</li>
+                                <li>Install "WebSockets by Markus Sattler" (version 2.3.0 or newer)</li>
+                            </ol>
+
+                            <h4>3. ESP32 Camera Library</h4>
+                            <p>The ESP32 camera libraries (<code>esp_camera.h</code>, <code>img_converters.h</code>) are included in the ESP32 board support package you installed in step 1. You don't need to install them separately.</p>
+
+                            <h4>4. Other Headers</h4>
+                            <p>The other headers in the code:</p>
+                            <ul>
+                                <li><code>soc/soc.h</code></li>
+                                <li><code>soc/rtc_cntl_reg.h</code></li>
+                            </ul>
+                            <p>These are also part of the ESP32 board support package and don't require separate installation.</p>
+
+                            <h4>5. WiFi Library</h4>
+                            <p>The WiFi library is included in the ESP32 board support package. No separate installation is needed.</p>
+
+                            <h4>Troubleshooting Library Installation</h4>
+                            <p>If you still encounter issues:</p>
+                            <ul>
+                                <li><strong>Library Not Found Errors</strong>:
+                                    <ul>
+                                        <li>Make sure you've installed the ESP32 board support package</li>
+                                        <li>Check that you've selected an ESP32 board in <strong>Tools > Board</strong></li>
+                                    </ul>
+                                </li>
+                                <li><strong>Compilation Errors</strong>:
+                                    <ul>
+                                        <li>Update the Arduino IDE to the latest version</li>
+                                        <li>Update the ESP32 board support package to the latest version</li>
+                                        <li>Update the WebSockets library to the latest version</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Upload Errors</strong>:
+                                    <ul>
+                                        <li>Make sure you've selected the correct port in <strong>Tools > Port</strong></li>
+                                        <li>For ESP32-CAM, ensure GPIO0 is connected to GND during upload</li>
+                                        <li>Press the reset button on the ESP32-CAM before uploading</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
                     <h2 id="software-issues">PC Software Issues</h2>
                     <p>
                         Issues related to the PC software that receives and processes the video stream.
                     </p>
-                    
+
                     <div class="faq-item">
                         <div class="faq-question">
                             <h3>Missing dependencies</h3>
@@ -239,7 +315,7 @@
                             </ol>
                         </div>
                     </div>
-                    
+
                     <div class="faq-item">
                         <div class="faq-question">
                             <h3>Model loading errors</h3>
@@ -262,12 +338,12 @@
                             </ol>
                         </div>
                     </div>
-                    
+
                     <h2 id="ai-issues">AI Processing Issues</h2>
                     <p>
                         Issues related to the AI processing of the video stream.
                     </p>
-                    
+
                     <div class="faq-item">
                         <div class="faq-question">
                             <h3>No detections or poor detection accuracy</h3>
@@ -292,7 +368,7 @@
                             </ol>
                         </div>
                     </div>
-                    
+
                     <div class="faq-item">
                         <div class="faq-question">
                             <h3>False positives</h3>
@@ -315,12 +391,12 @@
                             </ol>
                         </div>
                     </div>
-                    
+
                     <h2 id="performance-issues">Performance Issues</h2>
                     <p>
                         Issues related to the performance of the AI WiFi CAM system.
                     </p>
-                    
+
                     <div class="faq-item">
                         <div class="faq-question">
                             <h3>Low frame rate</h3>
@@ -345,7 +421,7 @@
                             </ol>
                         </div>
                     </div>
-                    
+
                     <div class="faq-item">
                         <div class="faq-question">
                             <h3>High CPU/GPU usage</h3>
@@ -370,12 +446,12 @@
                             </ol>
                         </div>
                     </div>
-                    
+
                     <h2 id="web-interface-issues">Web Interface Issues</h2>
                     <p>
                         Issues related to the web interface for accessing the AI WiFi CAM system.
                     </p>
-                    
+
                     <div class="faq-item">
                         <div class="faq-question">
                             <h3>Cannot access web interface</h3>
@@ -400,7 +476,7 @@
                             </ol>
                         </div>
                     </div>
-                    
+
                     <div class="faq-item">
                         <div class="faq-question">
                             <h3>Web interface loads but no video</h3>
@@ -425,12 +501,12 @@
                             </ol>
                         </div>
                     </div>
-                    
+
                     <h2 id="advanced-troubleshooting">Advanced Troubleshooting</h2>
                     <p>
                         Advanced troubleshooting techniques for persistent issues.
                     </p>
-                    
+
                     <h3>Debugging the ESP32-CAM</h3>
                     <p>
                         For persistent ESP32-CAM issues, you can enable debug output:
@@ -443,7 +519,7 @@
                         <li>Open the Serial Monitor in Arduino IDE (115200 baud)</li>
                         <li>Observe the debug output for clues about the issue</li>
                     </ol>
-                    
+
                     <h3>Debugging the PC Software</h3>
                     <p>
                         For persistent PC software issues, you can enable debug logging:
@@ -455,7 +531,7 @@
                         <li>Check the console output for detailed logging information</li>
                         <li>Look for error messages or warnings that might indicate the issue</li>
                     </ol>
-                    
+
                     <h3>Network Diagnostics</h3>
                     <p>
                         For persistent network issues, you can use network diagnostic tools:
@@ -469,7 +545,7 @@
                         </li>
                         <li>Use Wireshark or a similar tool to capture and analyze network traffic</li>
                     </ol>
-                    
+
                     <div class="highlight">
                         <p><i class="fas fa-exclamation-triangle"></i> <strong>Still having issues?</strong> If you've tried all the troubleshooting steps and still can't resolve the issue, consider posting on the <a href="https://github.com/bobbyiscool123/AI-WIFI-CAM/issues">GitHub Issues</a> page with detailed information about your setup and the problem you're experiencing.</p>
                     </div>
@@ -497,6 +573,8 @@
                     <li><a href="usage.html">Usage Guide</a></li>
                     <li><a href="troubleshooting.html">Troubleshooting</a></li>
                     <li><a href="qa.html">Q&A Document</a></li>
+                    <li><a href="esp32cam_stream.html">ESP32-CAM Stream</a></li>
+                    <li><a href="web_interface.html">Web Interface</a></li>
                 </ul>
             </div>
             <div class="footer-section">
