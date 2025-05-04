@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Interface Documentation - AI WiFi CAM</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="alternate icon" href="favicon.ico" type="image/x-icon">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <img src="images/logo.svg" alt="AI WiFi CAM Logo" onerror="this.src='https://via.placeholder.com/40x40?text=AI';this.onerror=null;">
+                <h1>AI WiFi CAM</h1>
+            </a>
+            <button class="mobile-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="installation.html">Installation</a></li>
+                <li><a href="usage.html">Usage</a></li>
+                <li><a href="troubleshooting.html">Troubleshooting</a></li>
+                <li><a href="qa.html">Q&A</a></li>
+                <li><a href="esp32cam_stream.html">ESP32-CAM Stream</a></li>
+                <li><a href="web_interface.html" class="active">Web Interface</a></li>
+            </ul>
+            <button class="theme-toggle" title="Toggle dark/light mode">
+                <i class="fas fa-moon"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Documentation Content -->
+    <section class="documentation">
+        <div class="container doc-container">
+            <div class="doc-sidebar">
+                <h3>Web Interface</h3>
+                <ul>
+                    <li><a href="#overview">Overview</a></li>
+                    <li><a href="#purpose">Purpose of the Web Folder</a></li>
+                    <li><a href="#structure">Folder Structure</a></li>
+                    <li><a href="#components">Key Components</a></li>
+                    <li><a href="#how-it-works">How the Web Interface Works</a></li>
+                    <li><a href="#integration">Integration with Python Backend</a></li>
+                    <li><a href="#customizing">Customizing the Web Interface</a></li>
+                    <li><a href="#browser-compatibility">Browser Compatibility</a></li>
+                </ul>
+            </div>
+            <div class="doc-content">
+                <h2 id="overview">Web Interface Documentation</h2>
+                
+                <h3 id="overview">Overview</h3>
+                <p>
+                    The <code>web</code> folder contains all the files necessary for the AI WiFi CAM's web interface. This interface allows users to view the video stream, control the AI processing settings, and interact with the system through a browser. The web interface is served by the Python application running on the PC and can be accessed from any device on the same network.
+                </p>
+
+                <div class="content-image">
+                    <img src="images/web_interface.svg" alt="Web Interface Screenshot" onerror="this.src='https://via.placeholder.com/800x450?text=Web+Interface+Screenshot';this.onerror=null;">
+                </div>
+
+                <h3 id="purpose">Purpose of the Web Folder</h3>
+                <p>The web folder serves several critical functions in the AI WiFi CAM project:</p>
+                
+                <ol>
+                    <li><strong>User Interface</strong>: Provides a graphical interface for users to interact with the system</li>
+                    <li><strong>Video Display</strong>: Shows the processed video stream with AI annotations</li>
+                    <li><strong>Control Panel</strong>: Allows users to adjust AI settings and camera parameters</li>
+                    <li><strong>Snapshot Management</strong>: Enables capturing and downloading still images</li>
+                    <li><strong>Status Monitoring</strong>: Displays system status, FPS, and detection counts</li>
+                </ol>
+
+                <h3 id="structure">Folder Structure</h3>
+                <pre><code>web/
+├── css/                        # Stylesheets
+│   └── styles.css              # Main CSS file for styling the interface
+├── img/                        # Image assets
+│   ├── favicon.svg             # Browser tab icon (16x16)
+│   ├── favicon-32.svg          # Larger browser tab icon (32x32)
+│   ├── favicon.ico             # Fallback favicon for older browsers
+│   ├── logo.svg                # Main logo for footer
+│   ├── logo_header.svg         # Horizontal logo for header
+│   └── placeholder.svg         # Placeholder image when video is not streaming
+├── js/                         # JavaScript files
+│   └── main.js                 # Main JavaScript for interface functionality
+└── index.html                  # Main HTML file that structures the interface</code></pre>
+
+                <h3 id="components">Key Components</h3>
+                
+                <h4>HTML Structure (index.html)</h4>
+                <p>The <code>index.html</code> file defines the structure of the web interface, including:</p>
+                <ul>
+                    <li><strong>Header</strong>: Contains the logo and connection status indicator</li>
+                    <li><strong>Main Content</strong>: 
+                        <ul>
+                            <li>Video display area</li>
+                            <li>Settings panel for AI model selection and configuration</li>
+                            <li>Information panel showing system statistics</li>
+                        </ul>
+                    </li>
+                    <li><strong>Snapshots Section</strong>: Grid display of captured images</li>
+                    <li><strong>Footer</strong>: Contains copyright information and links</li>
+                    <li><strong>Modal Dialogs</strong>: For viewing and downloading snapshots</li>
+                </ul>
+
+                <h4>CSS Styling (styles.css)</h4>
+                <p>The <code>styles.css</code> file provides styling for all UI elements, including:</p>
+                <ul>
+                    <li>Responsive layout that works on different screen sizes</li>
+                    <li>Color schemes for both light and dark modes</li>
+                    <li>Animations and transitions for interactive elements</li>
+                    <li>Styling for video container, controls, and overlays</li>
+                    <li>Grid layouts for snapshots and settings panels</li>
+                </ul>
+
+                <h4>JavaScript Functionality (main.js)</h4>
+                <p>The <code>main.js</code> file implements the interactive functionality of the interface:</p>
+                <ul>
+                    <li><strong>WebSocket Connections</strong>: 
+                        <ul>
+                            <li>Connects to the video stream WebSocket</li>
+                            <li>Connects to the control WebSocket for sending commands</li>
+                        </ul>
+                    </li>
+                    <li><strong>UI Updates</strong>:
+                        <ul>
+                            <li>Updates connection status indicators</li>
+                            <li>Refreshes statistics and detection counts</li>
+                            <li>Manages the snapshots grid</li>
+                        </ul>
+                    </li>
+                    <li><strong>User Interactions</strong>:
+                        <ul>
+                            <li>Handles button clicks and form submissions</li>
+                            <li>Processes settings changes</li>
+                            <li>Manages fullscreen mode and snapshot capture</li>
+                            <li>Controls modal dialogs</li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <h4>Image Assets</h4>
+                <p>The <code>img</code> folder contains various image assets:</p>
+                <ul>
+                    <li><strong>Favicons</strong>: Browser tab icons in different formats</li>
+                    <li><strong>Logos</strong>: Vector graphics for the application branding</li>
+                    <li><strong>Placeholder</strong>: Displayed when the video stream is not available</li>
+                </ul>
+
+                <h3 id="how-it-works">How the Web Interface Works</h3>
+                
+                <ol>
+                    <li><strong>Initialization</strong>:
+                        <ul>
+                            <li>When a user accesses the web interface, the browser loads <code>index.html</code></li>
+                            <li>The page loads CSS styles and JavaScript code</li>
+                            <li>JavaScript initializes and attempts to connect to the WebSocket server</li>
+                        </ul>
+                    </li>
+                    <li><strong>WebSocket Connections</strong>:
+                        <ul>
+                            <li>Two WebSocket connections are established:
+                                <ul>
+                                    <li><code>/video</code> WebSocket for receiving the video stream</li>
+                                    <li><code>/control</code> WebSocket for sending commands and receiving status updates</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><strong>Video Streaming</strong>:
+                        <ul>
+                            <li>The server sends Base64-encoded JPEG frames over the video WebSocket</li>
+                            <li>JavaScript decodes these frames and displays them in the video container</li>
+                            <li>The stream is updated in real-time as new frames arrive</li>
+                        </ul>
+                    </li>
+                    <li><strong>User Interactions</strong>:
+                        <ul>
+                            <li>When users adjust settings (e.g., AI model, confidence threshold), JavaScript sends commands over the control WebSocket</li>
+                            <li>The server processes these commands and updates the AI processing accordingly</li>
+                            <li>Status updates and statistics are sent back to the client and displayed in the interface</li>
+                        </ul>
+                    </li>
+                    <li><strong>Snapshot Functionality</strong>:
+                        <ul>
+                            <li>Users can capture snapshots of the current frame</li>
+                            <li>These are stored in the browser and displayed in the snapshots grid</li>
+                            <li>Users can view snapshots in a modal dialog and download them</li>
+                        </ul>
+                    </li>
+                </ol>
+
+                <h3 id="integration">Integration with Python Backend</h3>
+                <p>The web interface communicates with the Python backend through WebSockets:</p>
+                
+                <pre><code>┌─────────────┐      WebSocket      ┌─────────────┐
+│             │  (Video Stream)     │             │
+│  Browser    │◄─────────────────────┤  Python    │
+│  (Web       │                     │  Backend    │
+│  Interface) │      WebSocket      │  (stream_   │
+│             │  (Control Channel)  │  receiver.py)│
+│             │◄────────────────────►│             │
+└─────────────┘                     └─────────────┘</code></pre>
+                
+                <p>The Python backend serves the web interface files and handles WebSocket connections:</p>
+                
+                <pre><code># Set up the web server routes
+async def setup_web_server():
+    app = web.Application()
+
+    # WebSocket routes
+    app.router.add_get('/video', handle_web_socket_video)
+    app.router.add_get('/control', handle_web_socket_control)
+
+    # Static files (serves the web folder)
+    app.router.add_static('/', Path(args.web_path), show_index=True)
+
+    # Start the web server
+    runner = web.AppRunner(app)
+    await runner.setup()
+    site = web.TCPSite(runner, args.host, args.web_port)
+    await site.start()</code></pre>
+
+                <h3 id="customizing">Customizing the Web Interface</h3>
+                
+                <h4>Changing the Appearance</h4>
+                <p>To modify the appearance of the web interface:</p>
+                <ol>
+                    <li>Edit <code>styles.css</code> to change colors, sizes, and layouts</li>
+                    <li>Replace logo files in the <code>img</code> folder with your own designs</li>
+                    <li>Adjust the HTML structure in <code>index.html</code> as needed</li>
+                </ol>
+
+                <h4>Adding New Features</h4>
+                <p>To add new features to the web interface:</p>
+                <ol>
+                    <li>Add new HTML elements to <code>index.html</code></li>
+                    <li>Implement the functionality in <code>main.js</code></li>
+                    <li>Add corresponding server-side handlers in <code>stream_receiver.py</code></li>
+                </ol>
+
+                <h4>Supporting Mobile Devices</h4>
+                <p>The web interface is already responsive and works on mobile devices, but you can enhance it by:</p>
+                <ol>
+                    <li>Testing on various screen sizes and adjusting CSS as needed</li>
+                    <li>Adding touch-specific interactions for mobile users</li>
+                    <li>Optimizing image sizes for faster loading on mobile networks</li>
+                </ol>
+
+                <h3 id="browser-compatibility">Browser Compatibility</h3>
+                <p>The web interface is compatible with modern browsers:</p>
+                <ul>
+                    <li>Chrome 60+</li>
+                    <li>Firefox 55+</li>
+                    <li>Safari 11+</li>
+                    <li>Edge 16+</li>
+                </ul>
+                
+                <p>For older browsers, you may need to:</p>
+                <ul>
+                    <li>Use polyfills for modern JavaScript features</li>
+                    <li>Provide alternative image formats (PNG instead of SVG)</li>
+                    <li>Adjust CSS for better compatibility</li>
+                </ul>
+
+                <h3>Conclusion</h3>
+                <p>
+                    The web folder is a crucial component of the AI WiFi CAM system, providing an intuitive and responsive interface for users to interact with the system. By understanding its structure and functionality, you can effectively use, maintain, and customize the web interface to suit your specific needs.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-container">
+            <div class="footer-section">
+                <h3>AI WiFi CAM</h3>
+                <p>An open-source project combining ESP32-CAM with real-time AI processing capabilities.</p>
+                <div class="social-links">
+                    <a href="https://github.com/bobbyiscool123/AI-WIFI-CAM" title="GitHub Repository">
+                        <i class="fab fa-github"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Documentation</h3>
+                <ul class="footer-links">
+                    <li><a href="installation.html">Installation Guide</a></li>
+                    <li><a href="usage.html">Usage Guide</a></li>
+                    <li><a href="troubleshooting.html">Troubleshooting</a></li>
+                    <li><a href="qa.html">Q&A Document</a></li>
+                    <li><a href="esp32cam_stream.html">ESP32-CAM Stream</a></li>
+                    <li><a href="web_interface.html">Web Interface</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Resources</h3>
+                <ul class="footer-links">
+                    <li><a href="https://github.com/espressif/arduino-esp32">ESP32 Arduino Core</a></li>
+                    <li><a href="https://opencv.org/">OpenCV</a></li>
+                    <li><a href="https://github.com/AlexeyAB/darknet">YOLOv4</a></li>
+                    <li><a href="https://developers.google.com/mediapipe">MediaPipe</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 AI WiFi CAM Project. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

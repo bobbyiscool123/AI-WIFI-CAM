@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ESP32-CAM Stream Documentation - AI WiFi CAM</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="alternate icon" href="favicon.ico" type="image/x-icon">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <img src="images/logo.svg" alt="AI WiFi CAM Logo" onerror="this.src='https://via.placeholder.com/40x40?text=AI';this.onerror=null;">
+                <h1>AI WiFi CAM</h1>
+            </a>
+            <button class="mobile-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="installation.html">Installation</a></li>
+                <li><a href="usage.html">Usage</a></li>
+                <li><a href="troubleshooting.html">Troubleshooting</a></li>
+                <li><a href="qa.html">Q&A</a></li>
+                <li><a href="esp32cam_stream.html" class="active">ESP32-CAM Stream</a></li>
+                <li><a href="web_interface.html">Web Interface</a></li>
+            </ul>
+            <button class="theme-toggle" title="Toggle dark/light mode">
+                <i class="fas fa-moon"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Documentation Content -->
+    <section class="documentation">
+        <div class="container doc-container">
+            <div class="doc-sidebar">
+                <h3>ESP32-CAM Stream</h3>
+                <ul>
+                    <li><a href="#overview">Overview</a></li>
+                    <li><a href="#hardware-requirements">Hardware Requirements</a></li>
+                    <li><a href="#software-requirements">Software Requirements</a></li>
+                    <li><a href="#how-it-works">How It Works</a></li>
+                    <li><a href="#code-structure">Code Structure</a></li>
+                    <li><a href="#camera-configuration">Camera Configuration</a></li>
+                    <li><a href="#camera-settings">Camera Settings</a></li>
+                    <li><a href="#configuration">Configuration</a></li>
+                    <li><a href="#performance">Performance Considerations</a></li>
+                    <li><a href="#troubleshooting">Troubleshooting</a></li>
+                    <li><a href="#integration">Integration with PC Application</a></li>
+                    <li><a href="#advanced">Advanced Customization</a></li>
+                </ul>
+            </div>
+            <div class="doc-content">
+                <h2 id="overview">ESP32-CAM Stream Documentation</h2>
+                
+                <h3 id="overview">Overview</h3>
+                <p>
+                    The ESP32-CAM Stream component is a critical part of the AI WiFi CAM system that handles video capture and transmission from the ESP32-CAM hardware to the PC for AI processing. This document provides a detailed explanation of how the ESP32-CAM streaming functionality works, its configuration options, and implementation details.
+                </p>
+
+                <h3 id="hardware-requirements">Hardware Requirements</h3>
+                <ul>
+                    <li><strong>ESP32-CAM Module</strong>: AI Thinker ESP32-CAM or compatible module with OV2640 camera</li>
+                    <li><strong>Programming Interface</strong>: FTDI programmer or USB-to-TTL converter (3.3V logic level)</li>
+                    <li><strong>Power Source</strong>: Regulated 5V power supply (minimum 500mA capacity)</li>
+                </ul>
+
+                <h3 id="software-requirements">Software Requirements</h3>
+                <ul>
+                    <li><strong>Arduino IDE</strong>: Version 1.8.x or newer</li>
+                    <li><strong>ESP32 Board Support Package</strong>: Version 2.0.0 or newer</li>
+                    <li><strong>Required Libraries</strong>:
+                        <ul>
+                            <li>WiFi.h (Core ESP32 library)</li>
+                            <li>WebSocketsServer (Links2004 WebSockets library)</li>
+                            <li>esp_camera.h (ESP32 Camera Driver)</li>
+                            <li>esp_timer.h (ESP32 Timer functions)</li>
+                            <li>img_converters.h (Image conversion utilities)</li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <h3 id="how-it-works">How It Works</h3>
+                <p>The ESP32-CAM Stream component operates through the following process:</p>
+                
+                <ol>
+                    <li>
+                        <strong>Initialization</strong>:
+                        <ul>
+                            <li>The ESP32-CAM initializes the camera hardware with specific pin configurations</li>
+                            <li>Connects to the specified WiFi network</li>
+                            <li>Starts a WebSocket server on port 8888</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <strong>Video Capture</strong>:
+                        <ul>
+                            <li>Continuously captures frames from the camera</li>
+                            <li>Compresses them as JPEG images</li>
+                            <li>Sends them over WebSockets to connected clients</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <strong>Communication Protocol</strong>:
+                        <ul>
+                            <li>Uses WebSockets for low-latency, bidirectional communication</li>
+                            <li>Sends binary data (JPEG frames) to clients</li>
+                            <li>Receives text commands from clients (if implemented)</li>
+                        </ul>
+                    </li>
+                </ol>
+
+                <h3 id="code-structure">Code Structure</h3>
+                <p>The ESP32-CAM Stream code (<code>esp32cam_stream.ino</code>) is organized into several key functions:</p>
+                
+                <h4>Main Functions</h4>
+                <ul>
+                    <li><strong><code>setup()</code></strong>: Initializes the camera, connects to WiFi, and starts the WebSocket server</li>
+                    <li><strong><code>loop()</code></strong>: Main program loop that handles WebSocket connections and sends camera frames</li>
+                    <li><strong><code>initCamera()</code></strong>: Configures the camera hardware with appropriate settings</li>
+                    <li><strong><code>webSocketEvent()</code></strong>: Handles WebSocket events (connections, disconnections, messages)</li>
+                    <li><strong><code>sendCameraFrame()</code></strong>: Captures a frame from the camera and sends it over WebSocket</li>
+                </ul>
+
+                <h3 id="camera-configuration">Camera Configuration</h3>
+                <p>The camera is configured with the following pin assignments (for AI Thinker ESP32-CAM):</p>
+                
+                <pre><code>#define PWDN_GPIO_NUM     32
+#define RESET_GPIO_NUM    -1
+#define XCLK_GPIO_NUM      0
+#define SIOD_GPIO_NUM     26
+#define SIOC_GPIO_NUM     27
+#define Y9_GPIO_NUM       35
+#define Y8_GPIO_NUM       34
+#define Y7_GPIO_NUM       39
+#define Y6_GPIO_NUM       36
+#define Y5_GPIO_NUM       21
+#define Y4_GPIO_NUM       19
+#define Y3_GPIO_NUM       18
+#define Y2_GPIO_NUM        5
+#define VSYNC_GPIO_NUM    25
+#define HREF_GPIO_NUM     23
+#define PCLK_GPIO_NUM     22</code></pre>
+
+                <h3 id="camera-settings">Camera Settings</h3>
+                <p>The camera is initialized with these settings:</p>
+                
+                <ul>
+                    <li><strong>Frame Size</strong>: VGA (640x480) if PSRAM is available, QVGA (320x240) otherwise</li>
+                    <li><strong>JPEG Quality</strong>: 10 (0-63 scale, lower is higher quality) with PSRAM, 12 without PSRAM</li>
+                    <li><strong>Frame Buffer Count</strong>: 2 with PSRAM, 1 without PSRAM</li>
+                </ul>
+                
+                <p>Additional camera parameters that can be adjusted:</p>
+                
+                <ul>
+                    <li>Brightness (-2 to 2)</li>
+                    <li>Contrast (-2 to 2)</li>
+                    <li>Saturation (-2 to 2)</li>
+                    <li>Special effects (0 = none, 1 = negative, 2 = grayscale, etc.)</li>
+                    <li>White balance (enabled/disabled)</li>
+                    <li>AWB gain (enabled/disabled)</li>
+                    <li>WB mode (0-4: auto, sunny, cloudy, office, home)</li>
+                    <li>Exposure control (enabled/disabled)</li>
+                    <li>Gain control (enabled/disabled)</li>
+                    <li>Horizontal/vertical flip (enabled/disabled)</li>
+                </ul>
+
+                <h3 id="configuration">Configuration</h3>
+                <p>To use the ESP32-CAM Stream component, you need to modify the following parameters in the code:</p>
+                
+                <pre><code>// WiFi credentials
+const char* ssid = "YOUR_WIFI_SSID";      // Replace with your WiFi network name
+const char* password = "YOUR_WIFI_PASSWORD";  // Replace with your WiFi password</code></pre>
+                
+                <p>You can also adjust the frame rate by modifying the delay in the main loop:</p>
+                
+                <pre><code>// In the loop() function
+delay(50);  // Adjust this value to change frame rate (higher value = lower frame rate)</code></pre>
+
+                <h3 id="performance">Performance Considerations</h3>
+                <ul>
+                    <li>
+                        <strong>Frame Rate</strong>: The achievable frame rate depends on several factors:
+                        <ul>
+                            <li>WiFi signal strength and network congestion</li>
+                            <li>Camera resolution (lower resolutions achieve higher frame rates)</li>
+                            <li>JPEG compression quality (lower quality achieves higher frame rates)</li>
+                            <li>Processing load on the ESP32-CAM</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <strong>Typical Performance</strong>:
+                        <ul>
+                            <li>VGA (640x480): 15-25 FPS with good WiFi conditions</li>
+                            <li>QVGA (320x240): 25-40 FPS with good WiFi conditions</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <strong>Power Consumption</strong>:
+                        <ul>
+                            <li>The ESP32-CAM consumes approximately 180-250mA during active streaming</li>
+                            <li>Ensure your power supply can provide at least 500mA for stable operation</li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <h3 id="troubleshooting">Troubleshooting</h3>
+                <h4>Common Issues</h4>
+                
+                <ol>
+                    <li>
+                        <strong>Camera Initialization Failure</strong>:
+                        <ul>
+                            <li>Check camera module connections</li>
+                            <li>Ensure adequate power supply (5V, 500mA minimum)</li>
+                            <li>Try resetting the ESP32-CAM</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <strong>WiFi Connection Issues</strong>:
+                        <ul>
+                            <li>Verify WiFi credentials are correct</li>
+                            <li>Ensure the ESP32-CAM is within range of the WiFi router</li>
+                            <li>Check if the WiFi network is 2.4GHz (ESP32-CAM doesn't support 5GHz)</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <strong>Low Frame Rate or High Latency</strong>:
+                        <ul>
+                            <li>Reduce camera resolution or JPEG quality</li>
+                            <li>Improve WiFi signal strength</li>
+                            <li>Reduce the delay in the main loop</li>
+                            <li>Check for interference from other devices</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <strong>Brownout Resets</strong>:
+                        <ul>
+                            <li>Use a stable, high-quality power supply</li>
+                            <li>Add a large capacitor (470-1000μF) between VCC and GND</li>
+                            <li>The code already disables brownout detection, but this is a temporary solution</li>
+                        </ul>
+                    </li>
+                </ol>
+
+                <h3 id="integration">Integration with PC Application</h3>
+                <p>The ESP32-CAM Stream component integrates with the PC application through WebSockets:</p>
+                
+                <ol>
+                    <li>The ESP32-CAM creates a WebSocket server on port 8888</li>
+                    <li>The PC application connects to this server as a client</li>
+                    <li>The ESP32-CAM sends binary WebSocket messages containing JPEG frames</li>
+                    <li>The PC application decodes these frames and processes them with AI algorithms</li>
+                </ol>
+
+                <h3 id="advanced">Advanced Customization</h3>
+                <h4>Implementing Bidirectional Communication</h4>
+                
+                <p>The current implementation primarily sends video frames from the ESP32-CAM to the PC. You can extend it to receive commands from the PC by enhancing the <code>webSocketEvent()</code> function:</p>
+                
+                <pre><code>case WStype_TEXT:
+  // Handle text messages from client
+  String command = String((char*)payload);
+  
+  if (command == "resolution:high") {
+    // Change to high resolution
+    sensor_t * s = esp_camera_sensor_get();
+    s->set_framesize(s, FRAMESIZE_VGA);
+  } 
+  else if (command == "resolution:low") {
+    // Change to low resolution
+    sensor_t * s = esp_camera_sensor_get();
+    s->set_framesize(s, FRAMESIZE_QVGA);
+  }
+  // Add more commands as needed
+  break;</code></pre>
+                
+                <h4>Adding Status Reporting</h4>
+                
+                <p>You can implement periodic status reporting to inform the PC application about the ESP32-CAM's state:</p>
+                
+                <pre><code>unsigned long lastStatusTime = 0;
+const unsigned long statusInterval = 5000; // 5 seconds
+
+void loop() {
+  webSocket.loop();
+  
+  // If client is connected, send camera frames
+  if (clientConnected) {
+    sendCameraFrame();
+    delay(50);
+  }
+  
+  // Send status update every 5 seconds
+  unsigned long currentTime = millis();
+  if (currentTime - lastStatusTime > statusInterval) {
+    lastStatusTime = currentTime;
+    sendStatusUpdate();
+  }
+}
+
+void sendStatusUpdate() {
+  if (clientConnected) {
+    String status = "{\"type\":\"status\",\"uptime\":";
+    status += millis() / 1000;
+    status += ",\"heap\":";
+    status += ESP.getFreeHeap();
+    status += ",\"rssi\":";
+    status += WiFi.RSSI();
+    status += "}";
+    webSocket.sendTXT(0, status);
+  }
+}</code></pre>
+
+                <h3>Conclusion</h3>
+                <p>
+                    The ESP32-CAM Stream component provides a reliable and efficient way to capture video from the ESP32-CAM and transmit it to a PC for AI processing. By understanding its operation and configuration options, you can optimize it for your specific use case and integrate it effectively with the rest of the AI WiFi CAM system.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-container">
+            <div class="footer-section">
+                <h3>AI WiFi CAM</h3>
+                <p>An open-source project combining ESP32-CAM with real-time AI processing capabilities.</p>
+                <div class="social-links">
+                    <a href="https://github.com/bobbyiscool123/AI-WIFI-CAM" title="GitHub Repository">
+                        <i class="fab fa-github"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Documentation</h3>
+                <ul class="footer-links">
+                    <li><a href="installation.html">Installation Guide</a></li>
+                    <li><a href="usage.html">Usage Guide</a></li>
+                    <li><a href="troubleshooting.html">Troubleshooting</a></li>
+                    <li><a href="qa.html">Q&A Document</a></li>
+                    <li><a href="esp32cam_stream.html">ESP32-CAM Stream</a></li>
+                    <li><a href="web_interface.html">Web Interface</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Resources</h3>
+                <ul class="footer-links">
+                    <li><a href="https://github.com/espressif/arduino-esp32">ESP32 Arduino Core</a></li>
+                    <li><a href="https://opencv.org/">OpenCV</a></li>
+                    <li><a href="https://github.com/AlexeyAB/darknet">YOLOv4</a></li>
+                    <li><a href="https://developers.google.com/mediapipe">MediaPipe</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 AI WiFi CAM Project. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
