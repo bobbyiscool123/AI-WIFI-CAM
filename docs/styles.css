@@ -127,7 +127,7 @@ body {
 .hero {
     background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
     color: white;
-    padding: 4rem 0;
+    padding: 3rem 0;
     text-align: center;
 }
 
@@ -138,10 +138,11 @@ body {
 }
 
 .hero p {
-    font-size: 1.2rem;
+    font-size: 1.4rem;
     max-width: 800px;
-    margin: 0 auto 2rem;
+    margin: 0 auto 1.5rem;
     animation: fadeInUp 1s ease;
+    font-weight: 300;
 }
 
 .hero-buttons {
@@ -149,6 +150,43 @@ body {
     justify-content: center;
     gap: 1rem;
     animation: fadeIn 1.5s ease;
+}
+
+/* Demo GIF Section */
+.demo-section {
+    background-color: white;
+    padding: 2rem 0;
+    text-align: center;
+}
+
+.dark-mode .demo-section {
+    background-color: var(--dark-color);
+}
+
+.demo-container {
+    max-width: 800px;
+    margin: 0 auto;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+}
+
+.demo-gif {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.demo-caption {
+    padding: 1rem;
+    background-color: var(--light-color);
+    color: var(--text-color);
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+.dark-mode .demo-caption {
+    background-color: #1e1e30;
 }
 
 .btn {
@@ -426,6 +464,21 @@ body {
     border-radius: var(--border-radius);
     margin: 1.5rem 0;
     box-shadow: var(--shadow);
+}
+
+/* SVG Responsive Container */
+.svg-container {
+    width: 100%;
+    overflow-x: auto;
+    margin: 1.5rem 0;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+}
+
+.svg-container svg {
+    display: block;
+    max-width: 100%;
+    height: auto;
 }
 
 .doc-content pre {

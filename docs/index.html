@@ -39,8 +39,7 @@
         <div class="container">
             <h1>ESP32-CAM with Real-time AI Processing</h1>
             <p>
-                A powerful open-source project that combines affordable ESP32-CAM hardware with
-                state-of-the-art AI processing for real-time object detection, face recognition, and pose estimation.
+                Transform your ESP32-CAM into a powerful AI vision system for object detection, face recognition, and pose tracking.
             </p>
             <div class="hero-buttons">
                 <a href="https://github.com/bobbyiscool123/AI-WIFI-CAM" class="btn btn-primary">
@@ -49,6 +48,25 @@
                 <a href="installation.html" class="btn btn-secondary">
                     <i class="fas fa-download"></i> Get Started
                 </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Demo GIF Section -->
+    <section class="demo-section">
+        <div class="container">
+            <div class="demo-container">
+                <!--
+                    Note: Replace this placeholder with an actual demo GIF showing:
+                    - ESP32-CAM streaming video
+                    - AI detection boxes/annotations
+                    - Real-time processing
+                    Recommended dimensions: 800px width, aspect ratio 16:9
+                -->
+                <img src="images/ai_wifi_cam_demo.gif" alt="AI WiFi CAM Demo" class="demo-gif">
+                <div class="demo-caption">
+                    Real-time object detection and tracking using ESP32-CAM and AI processing
+                </div>
             </div>
         </div>
     </section>
@@ -66,42 +84,42 @@
                         <i class="fas fa-video"></i>
                     </div>
                     <h3>Real-time Streaming</h3>
-                    <p>Stream live video from ESP32-CAM to your PC over WiFi with minimal latency</p>
+                    <p>Stream live video from ESP32-CAM to your PC over WiFi with minimal latency. The system uses WebSockets for efficient data transfer, achieving up to 30 FPS depending on resolution and network conditions.</p>
                 </div>
                 <div class="feature-card animate-on-scroll">
                     <div class="feature-icon">
                         <i class="fas fa-brain"></i>
                     </div>
                     <h3>AI-Powered Analysis</h3>
-                    <p>Process video frames with YOLOv4 and MediaPipe for object detection and more</p>
+                    <p>Process video frames with YOLOv4 and MediaPipe for object detection, face recognition, and pose estimation. The modular AI pipeline allows for easy switching between different models to suit your specific needs.</p>
                 </div>
                 <div class="feature-card animate-on-scroll">
                     <div class="feature-icon">
                         <i class="fas fa-desktop"></i>
                     </div>
                     <h3>Web Interface</h3>
-                    <p>Access the system from any device on your network through a browser</p>
+                    <p>Access the system from any device on your network through a browser. The responsive web interface provides intuitive controls for adjusting settings and viewing the processed video stream with AI annotations.</p>
                 </div>
                 <div class="feature-card animate-on-scroll">
                     <div class="feature-icon">
                         <i class="fas fa-cogs"></i>
                     </div>
                     <h3>Customizable</h3>
-                    <p>Adjust AI models, detection thresholds, and other parameters on-the-fly</p>
+                    <p>Adjust AI models, detection thresholds, and other parameters on-the-fly. The system provides real-time feedback as you change settings, allowing you to fine-tune the AI processing for optimal performance in your specific environment.</p>
                 </div>
                 <div class="feature-card animate-on-scroll">
                     <div class="feature-icon">
                         <i class="fas fa-camera"></i>
                     </div>
                     <h3>Snapshot Capability</h3>
-                    <p>Capture and save still images with AI annotations for later analysis</p>
+                    <p>Capture and save still images with AI annotations for later analysis. Snapshots are automatically timestamped and can be downloaded or viewed in the built-in gallery, making it easy to document and share your AI detection results.</p>
                 </div>
                 <div class="feature-card animate-on-scroll">
                     <div class="feature-icon">
                         <i class="fas fa-chart-line"></i>
                     </div>
                     <h3>Performance Metrics</h3>
-                    <p>Monitor FPS, resolution, and detection counts in real-time</p>
+                    <p>Monitor FPS, resolution, and detection counts in real-time. The system provides detailed performance statistics to help you optimize settings for the best balance between detection accuracy and processing speed.</p>
                 </div>
             </div>
         </div>
@@ -175,7 +193,9 @@
                     </p>
                 </div>
                 <div class="content-image animate-on-scroll">
-                    <img src="images/ai_processing.svg" alt="AI Processing Pipeline">
+                    <div class="svg-container">
+                        <img src="images/ai_processing.svg" alt="AI Processing Pipeline">
+                    </div>
                 </div>
             </div>
         </div>
