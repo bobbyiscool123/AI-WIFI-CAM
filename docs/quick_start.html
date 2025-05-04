@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quick Start Guide - AI WiFi CAM</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <img src="images/logo.svg" alt="AI WiFi CAM Logo" onerror="this.src='https://via.placeholder.com/40x40?text=AI';this.onerror=null;">
+                <span>AI WiFi<br>CAM</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="installation.html">Installation</a></li>
+                <li><a href="usage.html">Usage</a></li>
+                <li><a href="troubleshooting.html">Troubleshooting</a></li>
+                <li><a href="qa.html">Q&A</a></li>
+                <li>
+                    <a href="#" class="dropdown-toggle">
+                        Features <i class="fas fa-chevron-down"></i>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="esp32cam_stream.html">ESP32-CAM Stream</a></li>
+                        <li><a href="web_interface.html">Web Interface</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <button class="theme-toggle" title="Toggle dark/light mode">
+                <i class="fas fa-moon"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Quick Start Guide</h1>
+            <p>
+                Get your AI WiFi CAM up and running in minutes
+            </p>
+        </div>
+    </section>
+
+    <!-- Documentation Section -->
+    <section class="documentation">
+        <div class="container">
+            <div class="doc-container">
+                <aside class="doc-sidebar">
+                    <h3>Quick Steps</h3>
+                    <ul>
+                        <li><a href="#hardware">1. Hardware Setup</a></li>
+                        <li><a href="#software">2. Software Setup</a></li>
+                        <li><a href="#esp32">3. ESP32-CAM Setup</a></li>
+                        <li><a href="#pc">4. PC Setup</a></li>
+                        <li><a href="#connect">5. Connect & View</a></li>
+                        <li><a href="#next">Next Steps</a></li>
+                    </ul>
+                </aside>
+
+                <main class="doc-content">
+                    <div class="highlight">
+                        <p><i class="fas fa-bolt"></i> <strong>Quick Start:</strong> This guide provides the minimal steps to get your AI WiFi CAM working. For detailed instructions, see the <a href="installation.html">full Installation Guide</a>.</p>
+                    </div>
+
+                    <h2 id="hardware">1. Hardware Setup</h2>
+                    <p>Connect your ESP32-CAM to an FTDI programmer for flashing:</p>
+                    
+                    <table>
+                        <tr>
+                            <th>ESP32-CAM</th>
+                            <th>FTDI Programmer</th>
+                        </tr>
+                        <tr>
+                            <td>5V</td>
+                            <td>5V</td>
+                        </tr>
+                        <tr>
+                            <td>GND</td>
+                            <td>GND</td>
+                        </tr>
+                        <tr>
+                            <td>U0R (RX)</td>
+                            <td>TX</td>
+                        </tr>
+                        <tr>
+                            <td>U0T (TX)</td>
+                            <td>RX</td>
+                        </tr>
+                    </table>
+                    
+                    <p><strong>Important:</strong> Connect GPIO0 to GND during flashing, then disconnect for normal operation.</p>
+
+                    <h2 id="software">2. Software Setup</h2>
+                    <ol>
+                        <li>Clone the repository:
+                            <pre><code>git clone https://github.com/bobbyiscool123/AI-WIFI-CAM.git
+cd AI-WIFI-CAM</code></pre>
+                        </li>
+                        <li>Install required Python packages:
+                            <pre><code>pip install -r requirements.txt</code></pre>
+                        </li>
+                        <li>Download YOLOv4 weights (one-time setup):
+                            <pre><code>python pc_code/download_models.py</code></pre>
+                        </li>
+                    </ol>
+
+                    <h2 id="esp32">3. ESP32-CAM Setup</h2>
+                    <ol>
+                        <li>Open Arduino IDE</li>
+                        <li>Install ESP32 board support and WebSockets library (see <a href="installation.html#library-installation-issues">Library Installation</a>)</li>
+                        <li>Open the ESP32-CAM sketch:
+                            <pre><code>esp32cam_code/esp32cam_stream/esp32cam_stream.ino</code></pre>
+                        </li>
+                        <li>Edit WiFi credentials:
+                            <pre><code>const char* ssid = "YOUR_WIFI_SSID";
+const char* password = "YOUR_WIFI_PASSWORD";</code></pre>
+                        </li>
+                        <li>Connect GPIO0 to GND</li>
+                        <li>Select "ESP32 Wrover Module" board and correct port</li>
+                        <li>Upload the sketch</li>
+                        <li>Disconnect GPIO0 from GND</li>
+                        <li>Press the reset button on ESP32-CAM</li>
+                    </ol>
+
+                    <h2 id="pc">4. PC Setup</h2>
+                    <ol>
+                        <li>Make sure you're on the same WiFi network as the ESP32-CAM</li>
+                        <li>Open a terminal/command prompt</li>
+                        <li>Navigate to the AI-WIFI-CAM directory</li>
+                        <li>Start the PC software:
+                            <pre><code>python pc_code/stream_receiver.py</code></pre>
+                        </li>
+                    </ol>
+
+                    <h2 id="connect">5. Connect & View</h2>
+                    <ol>
+                        <li>The ESP32-CAM will automatically connect to your PC</li>
+                        <li>Open a web browser and navigate to:
+                            <pre><code>http://localhost:8080</code></pre>
+                        </li>
+                        <li>You should see the live video stream with AI processing</li>
+                    </ol>
+
+                    <div class="highlight">
+                        <p><i class="fas fa-check-circle"></i> <strong>Success!</strong> You should now see the ESP32-CAM video stream with AI detections in your browser.</p>
+                    </div>
+
+                    <h2 id="next">Next Steps</h2>
+                    <p>Now that your AI WiFi CAM is running, you can:</p>
+                    <ul>
+                        <li><a href="usage.html">Learn how to use all features</a></li>
+                        <li><a href="esp32cam_stream.html">Explore ESP32-CAM streaming options</a></li>
+                        <li><a href="web_interface.html">Customize the web interface</a></li>
+                    </ul>
+
+                    <div class="highlight">
+                        <p><i class="fas fa-info-circle"></i> <strong>Troubleshooting:</strong> If you encounter any issues, check the <a href="troubleshooting.html">Troubleshooting Guide</a>.</p>
+                    </div>
+                </main>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-container">
+            <div class="footer-section">
+                <h3>AI WiFi CAM</h3>
+                <p>An open-source project combining ESP32-CAM with real-time AI processing capabilities.</p>
+                <div class="social-links">
+                    <a href="https://github.com/bobbyiscool123/AI-WIFI-CAM" title="GitHub Repository">
+                        <i class="fab fa-github"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Documentation</h3>
+                <ul class="footer-links">
+                    <li><a href="quick_start.html">Quick Start Guide</a></li>
+                    <li><a href="installation.html">Installation Guide</a></li>
+                    <li><a href="usage.html">Usage Guide</a></li>
+                    <li><a href="troubleshooting.html">Troubleshooting</a></li>
+                    <li><a href="qa.html">Q&A Document</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Features</h3>
+                <ul class="footer-links">
+                    <li><a href="esp32cam_stream.html">ESP32-CAM Stream</a></li>
+                    <li><a href="web_interface.html">Web Interface</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>External Resources</h3>
+                <ul class="footer-links">
+                    <li><a href="https://github.com/espressif/arduino-esp32">ESP32 Arduino Core</a></li>
+                    <li><a href="https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/peripherals/camera.html">ESP32 Camera API</a></li>
+                    <li><a href="https://opencv.org/documentation/">OpenCV Documentation</a></li>
+                    <li><a href="https://github.com/AlexeyAB/darknet">YOLOv4 GitHub</a></li>
+                    <li><a href="https://developers.google.com/mediapipe/solutions">MediaPipe Solutions</a></li>
+                    <li><a href="https://websockets.readthedocs.io/">WebSockets for Python</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 AI WiFi CAM Project. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
