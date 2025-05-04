@@ -15,11 +15,8 @@
         <div class="container nav-container">
             <a href="index.html" class="logo">
                 <img src="images/logo.svg" alt="AI WiFi CAM Logo" onerror="this.src='https://via.placeholder.com/40x40?text=AI';this.onerror=null;">
-                <h1>AI WiFi CAM</h1>
+                <span>AI WiFi<br>CAM</span>
             </a>
-            <button class="mobile-toggle">
-                <i class="fas fa-bars"></i>
-            </button>
             <ul class="nav-links">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="installation.html">Installation</a></li>
@@ -57,7 +54,7 @@
             </div>
             <div class="doc-content">
                 <h2 id="overview">ESP32-CAM Stream Documentation</h2>
-                
+
                 <h3 id="overview">Overview</h3>
                 <p>
                     The ESP32-CAM Stream component is a critical part of the AI WiFi CAM system that handles video capture and transmission from the ESP32-CAM hardware to the PC for AI processing. This document provides a detailed explanation of how the ESP32-CAM streaming functionality works, its configuration options, and implementation details.
@@ -87,7 +84,7 @@
 
                 <h3 id="how-it-works">How It Works</h3>
                 <p>The ESP32-CAM Stream component operates through the following process:</p>
-                
+
                 <ol>
                     <li>
                         <strong>Initialization</strong>:
@@ -117,7 +114,7 @@
 
                 <h3 id="code-structure">Code Structure</h3>
                 <p>The ESP32-CAM Stream code (<code>esp32cam_stream.ino</code>) is organized into several key functions:</p>
-                
+
                 <h4>Main Functions</h4>
                 <ul>
                     <li><strong><code>setup()</code></strong>: Initializes the camera, connects to WiFi, and starts the WebSocket server</li>
@@ -129,7 +126,7 @@
 
                 <h3 id="camera-configuration">Camera Configuration</h3>
                 <p>The camera is configured with the following pin assignments (for AI Thinker ESP32-CAM):</p>
-                
+
                 <pre><code>#define PWDN_GPIO_NUM     32
 #define RESET_GPIO_NUM    -1
 #define XCLK_GPIO_NUM      0
@@ -149,15 +146,15 @@
 
                 <h3 id="camera-settings">Camera Settings</h3>
                 <p>The camera is initialized with these settings:</p>
-                
+
                 <ul>
                     <li><strong>Frame Size</strong>: VGA (640x480) if PSRAM is available, QVGA (320x240) otherwise</li>
                     <li><strong>JPEG Quality</strong>: 10 (0-63 scale, lower is higher quality) with PSRAM, 12 without PSRAM</li>
                     <li><strong>Frame Buffer Count</strong>: 2 with PSRAM, 1 without PSRAM</li>
                 </ul>
-                
+
                 <p>Additional camera parameters that can be adjusted:</p>
-                
+
                 <ul>
                     <li>Brightness (-2 to 2)</li>
                     <li>Contrast (-2 to 2)</li>
@@ -173,13 +170,13 @@
 
                 <h3 id="configuration">Configuration</h3>
                 <p>To use the ESP32-CAM Stream component, you need to modify the following parameters in the code:</p>
-                
+
                 <pre><code>// WiFi credentials
 const char* ssid = "YOUR_WIFI_SSID";      // Replace with your WiFi network name
 const char* password = "YOUR_WIFI_PASSWORD";  // Replace with your WiFi password</code></pre>
-                
+
                 <p>You can also adjust the frame rate by modifying the delay in the main loop:</p>
-                
+
                 <pre><code>// In the loop() function
 delay(50);  // Adjust this value to change frame rate (higher value = lower frame rate)</code></pre>
 
@@ -212,7 +209,7 @@ delay(50);  // Adjust this value to change frame rate (higher value = lower fram
 
                 <h3 id="troubleshooting">Troubleshooting</h3>
                 <h4>Common Issues</h4>
-                
+
                 <ol>
                     <li>
                         <strong>Camera Initialization Failure</strong>:
@@ -251,7 +248,7 @@ delay(50);  // Adjust this value to change frame rate (higher value = lower fram
 
                 <h3 id="integration">Integration with PC Application</h3>
                 <p>The ESP32-CAM Stream component integrates with the PC application through WebSockets:</p>
-                
+
                 <ol>
                     <li>The ESP32-CAM creates a WebSocket server on port 8888</li>
                     <li>The PC application connects to this server as a client</li>
@@ -261,18 +258,18 @@ delay(50);  // Adjust this value to change frame rate (higher value = lower fram
 
                 <h3 id="advanced">Advanced Customization</h3>
                 <h4>Implementing Bidirectional Communication</h4>
-                
+
                 <p>The current implementation primarily sends video frames from the ESP32-CAM to the PC. You can extend it to receive commands from the PC by enhancing the <code>webSocketEvent()</code> function:</p>
-                
+
                 <pre><code>case WStype_TEXT:
   // Handle text messages from client
   String command = String((char*)payload);
-  
+
   if (command == "resolution:high") {
     // Change to high resolution
     sensor_t * s = esp_camera_sensor_get();
     s->set_framesize(s, FRAMESIZE_VGA);
-  } 
+  }
   else if (command == "resolution:low") {
     // Change to low resolution
     sensor_t * s = esp_camera_sensor_get();
@@ -280,23 +277,23 @@ delay(50);  // Adjust this value to change frame rate (higher value = lower fram
   }
   // Add more commands as needed
   break;</code></pre>
-                
+
                 <h4>Adding Status Reporting</h4>
-                
+
                 <p>You can implement periodic status reporting to inform the PC application about the ESP32-CAM's state:</p>
-                
+
                 <pre><code>unsigned long lastStatusTime = 0;
 const unsigned long statusInterval = 5000; // 5 seconds
 
 void loop() {
   webSocket.loop();
-  
+
   // If client is connected, send camera frames
   if (clientConnected) {
     sendCameraFrame();
     delay(50);
   }
-  
+
   // Send status update every 5 seconds
   unsigned long currentTime = millis();
   if (currentTime - lastStatusTime > statusInterval) {

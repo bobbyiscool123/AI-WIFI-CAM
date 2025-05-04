@@ -15,11 +15,8 @@
         <div class="container nav-container">
             <a href="index.html" class="logo">
                 <img src="images/logo.svg" alt="AI WiFi CAM Logo" onerror="this.src='https://via.placeholder.com/40x40?text=AI';this.onerror=null;">
-                <h1>AI WiFi CAM</h1>
+                <span>AI WiFi<br>CAM</span>
             </a>
-            <button class="mobile-toggle">
-                <i class="fas fa-bars"></i>
-            </button>
             <ul class="nav-links">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="installation.html">Installation</a></li>
@@ -53,7 +50,7 @@
             </div>
             <div class="doc-content">
                 <h2 id="overview">Web Interface Documentation</h2>
-                
+
                 <h3 id="overview">Overview</h3>
                 <p>
                     The <code>web</code> folder contains all the files necessary for the AI WiFi CAM's web interface. This interface allows users to view the video stream, control the AI processing settings, and interact with the system through a browser. The web interface is served by the Python application running on the PC and can be accessed from any device on the same network.
@@ -65,7 +62,7 @@
 
                 <h3 id="purpose">Purpose of the Web Folder</h3>
                 <p>The web folder serves several critical functions in the AI WiFi CAM project:</p>
-                
+
                 <ol>
                     <li><strong>User Interface</strong>: Provides a graphical interface for users to interact with the system</li>
                     <li><strong>Video Display</strong>: Shows the processed video stream with AI annotations</li>
@@ -90,12 +87,12 @@
 └── index.html                  # Main HTML file that structures the interface</code></pre>
 
                 <h3 id="components">Key Components</h3>
-                
+
                 <h4>HTML Structure (index.html)</h4>
                 <p>The <code>index.html</code> file defines the structure of the web interface, including:</p>
                 <ul>
                     <li><strong>Header</strong>: Contains the logo and connection status indicator</li>
-                    <li><strong>Main Content</strong>: 
+                    <li><strong>Main Content</strong>:
                         <ul>
                             <li>Video display area</li>
                             <li>Settings panel for AI model selection and configuration</li>
@@ -120,7 +117,7 @@
                 <h4>JavaScript Functionality (main.js)</h4>
                 <p>The <code>main.js</code> file implements the interactive functionality of the interface:</p>
                 <ul>
-                    <li><strong>WebSocket Connections</strong>: 
+                    <li><strong>WebSocket Connections</strong>:
                         <ul>
                             <li>Connects to the video stream WebSocket</li>
                             <li>Connects to the control WebSocket for sending commands</li>
@@ -152,7 +149,7 @@
                 </ul>
 
                 <h3 id="how-it-works">How the Web Interface Works</h3>
-                
+
                 <ol>
                     <li><strong>Initialization</strong>:
                         <ul>
@@ -196,7 +193,7 @@
 
                 <h3 id="integration">Integration with Python Backend</h3>
                 <p>The web interface communicates with the Python backend through WebSockets:</p>
-                
+
                 <pre><code>┌─────────────┐      WebSocket      ┌─────────────┐
 │             │  (Video Stream)     │             │
 │  Browser    │◄─────────────────────┤  Python    │
@@ -205,9 +202,9 @@
 │             │  (Control Channel)  │  receiver.py)│
 │             │◄────────────────────►│             │
 └─────────────┘                     └─────────────┘</code></pre>
-                
+
                 <p>The Python backend serves the web interface files and handles WebSocket connections:</p>
-                
+
                 <pre><code># Set up the web server routes
 async def setup_web_server():
     app = web.Application()
@@ -226,7 +223,7 @@ async def setup_web_server():
     await site.start()</code></pre>
 
                 <h3 id="customizing">Customizing the Web Interface</h3>
-                
+
                 <h4>Changing the Appearance</h4>
                 <p>To modify the appearance of the web interface:</p>
                 <ol>
@@ -259,7 +256,7 @@ async def setup_web_server():
                     <li>Safari 11+</li>
                     <li>Edge 16+</li>
                 </ul>
-                
+
                 <p>For older browsers, you may need to:</p>
                 <ul>
                     <li>Use polyfills for modern JavaScript features</li>
