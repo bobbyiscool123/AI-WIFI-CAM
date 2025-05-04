@@ -13,8 +13,8 @@
     --transition: all 0.3s ease;
     --border-radius: 8px;
     --max-width: 1200px;
-    --grid-color: rgba(124, 58, 237, 0.1); /* Purple grid - more visible */
-    --grid-size: 20px;
+    --grid-color: rgba(124, 58, 237, 0.2); /* Purple grid - much more visible */
+    --grid-size: 25px; /* Larger grid size */
     --grid-shadow: inset 0 0 30px rgba(0, 0, 0, 0.05);
     --gradient-start: #7c3aed; /* Purple */
     --gradient-end: #10b981; /* Emerald */
@@ -48,17 +48,9 @@ body {
     line-height: 1.6;
     color: var(--text-color);
     background-color: var(--light-color);
-    background-attachment: fixed;
-    background-image:
-        linear-gradient(var(--grid-color) 1px, transparent 1px),
-        linear-gradient(90deg, var(--grid-color) 1px, transparent 1px),
-        radial-gradient(circle at 50% 50%, var(--grid-color) 1px, transparent 1px);
-    background-size: var(--grid-size) var(--grid-size), var(--grid-size) var(--grid-size), calc(var(--grid-size) * 5) calc(var(--grid-size) * 5);
-    background-position: 0 0, 0 0, 0 0;
     transition: var(--transition);
     overflow-x: hidden;
     position: relative;
-    will-change: transform;
 }
 
 body::before {
@@ -71,19 +63,6 @@ body::before {
     box-shadow: var(--grid-shadow);
     pointer-events: none;
     z-index: -1;
-}
-
-body::after {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(135deg, rgba(124, 58, 237, 0.05) 0%, rgba(16, 185, 129, 0.05) 100%);
-    pointer-events: none;
-    z-index: -1;
-    will-change: transform;
 }
 
 .container {
@@ -911,9 +890,7 @@ body::after {
     position: sticky;
     top: 100px;
     height: fit-content;
-    background-color: rgba(255, 255, 255, 0.8);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    background-color: #ffffff;
     border-radius: var(--border-radius);
     padding: 1.5rem;
     box-shadow: var(--glass-shadow);
@@ -921,24 +898,11 @@ body::after {
     transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     position: relative;
     overflow: hidden;
-}
-
-.doc-sidebar::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
     background-image:
-        linear-gradient(var(--grid-color) 1px, transparent 1px),
-        linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+        linear-gradient(rgba(124, 58, 237, 0.1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(124, 58, 237, 0.1) 1px, transparent 1px);
     background-size: var(--grid-size) var(--grid-size);
-    background-attachment: fixed;
     background-position: 0 0;
-    opacity: 0.7;
-    z-index: -1;
-    will-change: transform;
 }
 
 .doc-sidebar:hover {
@@ -947,18 +911,9 @@ body::after {
 }
 
 .dark-mode .doc-sidebar {
-    background-color: rgba(30, 30, 48, 0.8); /* Darker than --light-color for better contrast */
+    background-color: rgba(30, 30, 48, 0.9); /* Darker than --light-color for better contrast */
     border: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-.dark-mode .doc-sidebar::before {
-    background-image:
-        linear-gradient(var(--grid-color) 1px, transparent 1px),
-        linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
-    opacity: 0.5;
-    background-attachment: fixed;
-    background-position: 0 0;
-    will-change: transform;
+    background-image: none;
 }
 
 .doc-sidebar h3 {
@@ -996,9 +951,7 @@ body::after {
 }
 
 .doc-content {
-    background-color: rgba(255, 255, 255, 0.8);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    background-color: #ffffff;
     border-radius: var(--border-radius);
     padding: 2rem;
     box-shadow: var(--glass-shadow);
@@ -1006,24 +959,11 @@ body::after {
     transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     position: relative;
     overflow: hidden;
-}
-
-.doc-content::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
     background-image:
-        linear-gradient(var(--grid-color) 1px, transparent 1px),
-        linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+        linear-gradient(rgba(124, 58, 237, 0.1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(124, 58, 237, 0.1) 1px, transparent 1px);
     background-size: var(--grid-size) var(--grid-size);
-    background-attachment: fixed;
     background-position: 0 0;
-    opacity: 0.7;
-    z-index: -1;
-    will-change: transform;
 }
 
 .doc-content:hover {
@@ -1032,19 +972,10 @@ body::after {
 }
 
 .dark-mode .doc-content {
-    background-color: rgba(30, 30, 48, 0.8); /* Darker than --light-color for better contrast */
+    background-color: rgba(30, 30, 48, 0.9); /* Darker than --light-color for better contrast */
     color: var(--text-color);
     border: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-.dark-mode .doc-content::before {
-    background-image:
-        linear-gradient(var(--grid-color) 1px, transparent 1px),
-        linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
-    opacity: 0.5;
-    background-attachment: fixed;
-    background-position: 0 0;
-    will-change: transform;
+    background-image: none;
 }
 
 .doc-content h2 {
@@ -1252,24 +1183,6 @@ footer {
     box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.1);
     position: relative;
     overflow: hidden;
-}
-
-footer::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image:
-        linear-gradient(var(--grid-color) 1px, transparent 1px),
-        linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
-    background-size: var(--grid-size) var(--grid-size);
-    background-attachment: fixed;
-    background-position: 0 0;
-    opacity: 0.15;
-    z-index: 0;
-    will-change: transform;
 }
 
 .footer-container {
