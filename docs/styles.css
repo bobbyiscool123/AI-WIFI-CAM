@@ -1,36 +1,40 @@
 /* Enhanced Styles for AI WiFi CAM GitHub Pages */
 
 :root {
-    --primary-color: #3498db;
-    --secondary-color: #2ecc71;
-    --accent-color: #e74c3c;
-    --dark-color: #2c3e50;
-    --light-color: #ecf0f1;
-    --text-color: #333;
-    --text-light: #7f8c8d;
+    --primary-color: #7c3aed; /* Vibrant purple */
+    --secondary-color: #10b981; /* Emerald green */
+    --accent-color: #f97316; /* Orange */
+    --dark-color: #1e293b; /* Slate dark */
+    --light-color: #f8fafc; /* Slate lightest */
+    --text-color: #334155; /* Slate darker */
+    --text-light: #64748b; /* Slate medium */
     --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
     --transition: all 0.3s ease;
     --border-radius: 8px;
     --max-width: 1200px;
-    --grid-color: rgba(0, 0, 0, 0.05);
-    --grid-size: 30px;
-    --grid-shadow: inset 0 0 30px rgba(0, 0, 0, 0.1);
+    --grid-color: rgba(124, 58, 237, 0.05); /* Purple grid */
+    --grid-size: 20px;
+    --grid-shadow: inset 0 0 30px rgba(0, 0, 0, 0.05);
+    --gradient-start: #7c3aed; /* Purple */
+    --gradient-end: #10b981; /* Emerald */
 }
 
 /* Dark mode variables */
 .dark-mode {
-    --primary-color: #4dabf7;
-    --secondary-color: #51cf66;
-    --accent-color: #ff6b6b;
-    --dark-color: #1a1a2e;
-    --light-color: #2a2a3c;
-    --text-color: #f8f9fa;
-    --text-light: #adb5bd;
+    --primary-color: #8b5cf6; /* Lighter purple */
+    --secondary-color: #34d399; /* Lighter emerald */
+    --accent-color: #fb923c; /* Lighter orange */
+    --dark-color: #0f172a; /* Darker slate */
+    --light-color: #1e293b; /* Dark slate */
+    --text-color: #f1f5f9; /* Light slate */
+    --text-light: #94a3b8; /* Medium slate */
     --shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
     --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-    --grid-color: rgba(255, 255, 255, 0.05);
+    --grid-color: rgba(139, 92, 246, 0.07); /* Purple grid for dark mode */
     --grid-shadow: inset 0 0 30px rgba(0, 0, 0, 0.3);
+    --gradient-start: #8b5cf6; /* Lighter purple */
+    --gradient-end: #34d399; /* Lighter emerald */
 }
 
 * {
@@ -40,14 +44,15 @@
 }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     line-height: 1.6;
     color: var(--text-color);
     background-color: var(--light-color);
     background-image:
         linear-gradient(var(--grid-color) 1px, transparent 1px),
-        linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
-    background-size: var(--grid-size) var(--grid-size);
+        linear-gradient(90deg, var(--grid-color) 1px, transparent 1px),
+        radial-gradient(circle at 50% 50%, var(--grid-color) 1px, transparent 1px);
+    background-size: var(--grid-size) var(--grid-size), var(--grid-size) var(--grid-size), calc(var(--grid-size) * 5) calc(var(--grid-size) * 5);
     transition: var(--transition);
     overflow-x: hidden;
     position: relative;
@@ -65,6 +70,18 @@ body::before {
     z-index: -1;
 }
 
+body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(124, 58, 237, 0.03) 0%, rgba(16, 185, 129, 0.03) 100%);
+    pointer-events: none;
+    z-index: -1;
+}
+
 .container {
     max-width: var(--max-width);
     margin: 0 auto;
@@ -73,7 +90,7 @@ body::before {
 
 /* Navigation */
 .navbar {
-    background-color: rgba(44, 62, 80, 0.85); /* Semi-transparent dark color */
+    background-color: rgba(30, 41, 59, 0.9); /* Slightly transparent dark slate */
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     padding: 0.8rem 0;
@@ -103,7 +120,7 @@ body::before {
 }
 
 .navbar:hover {
-    background-color: rgba(44, 62, 80, 0.95);
+    background-color: rgba(30, 41, 59, 0.95);
 }
 
 .nav-container {
@@ -890,7 +907,7 @@ body::before {
     position: sticky;
     top: 100px;
     height: fit-content;
-    background-color: rgba(236, 240, 241, 0.7);
+    background-color: rgba(255, 255, 255, 0.8);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     border-radius: var(--border-radius);
@@ -898,6 +915,23 @@ body::before {
     box-shadow: var(--glass-shadow);
     border: 1px solid rgba(255, 255, 255, 0.2);
     transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.doc-sidebar::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image:
+        linear-gradient(var(--grid-color) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+    background-size: var(--grid-size) var(--grid-size);
+    opacity: 0.5;
+    z-index: -1;
 }
 
 .doc-sidebar:hover {
@@ -906,8 +940,15 @@ body::before {
 }
 
 .dark-mode .doc-sidebar {
-    background-color: rgba(30, 30, 48, 0.7); /* Darker than --light-color for better contrast */
+    background-color: rgba(30, 30, 48, 0.8); /* Darker than --light-color for better contrast */
     border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.dark-mode .doc-sidebar::before {
+    background-image:
+        linear-gradient(var(--grid-color) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+    opacity: 0.3;
 }
 
 .doc-sidebar h3 {
@@ -945,7 +986,7 @@ body::before {
 }
 
 .doc-content {
-    background-color: rgba(236, 240, 241, 0.7);
+    background-color: rgba(255, 255, 255, 0.8);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     border-radius: var(--border-radius);
@@ -953,6 +994,23 @@ body::before {
     box-shadow: var(--glass-shadow);
     border: 1px solid rgba(255, 255, 255, 0.2);
     transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.doc-content::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image:
+        linear-gradient(var(--grid-color) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+    background-size: var(--grid-size) var(--grid-size);
+    opacity: 0.5;
+    z-index: -1;
 }
 
 .doc-content:hover {
@@ -961,9 +1019,16 @@ body::before {
 }
 
 .dark-mode .doc-content {
-    background-color: rgba(30, 30, 48, 0.7); /* Darker than --light-color for better contrast */
+    background-color: rgba(30, 30, 48, 0.8); /* Darker than --light-color for better contrast */
     color: var(--text-color);
     border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.dark-mode .doc-content::before {
+    background-image:
+        linear-gradient(var(--grid-color) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+    opacity: 0.3;
 }
 
 .doc-content h2 {
@@ -1162,13 +1227,30 @@ tr:hover {
 
 /* Footer */
 footer {
-    background-color: rgba(44, 62, 80, 0.9);
+    background-color: rgba(30, 41, 59, 0.9);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     color: white;
     padding: 3rem 0;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
     box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image:
+        linear-gradient(var(--grid-color) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+    background-size: var(--grid-size) var(--grid-size);
+    opacity: 0.1;
+    z-index: 0;
 }
 
 .footer-container {
@@ -1177,9 +1259,27 @@ footer {
     gap: 2rem;
 }
 
+.footer-section {
+    position: relative;
+    z-index: 1;
+}
+
 .footer-section h3 {
     margin-bottom: 1.5rem;
-    color: var(--primary-color);
+    color: white;
+    position: relative;
+    display: inline-block;
+}
+
+.footer-section h3::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 40px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    border-radius: 3px;
 }
 
 .footer-links {
@@ -1191,14 +1291,34 @@ footer {
 }
 
 .footer-links a {
-    color: white;
+    color: rgba(255, 255, 255, 0.8);
     text-decoration: none;
     transition: var(--transition);
+    position: relative;
+    width: fit-content;
+    display: inline-block;
+}
+
+.footer-links a::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    transition: width 0.3s ease;
+    opacity: 0;
 }
 
 .footer-links a:hover {
-    color: var(--primary-color);
+    color: white;
     padding-left: 5px;
+}
+
+.footer-links a:hover::before {
+    width: 100%;
+    opacity: 1;
 }
 
 .social-links {
@@ -1211,11 +1331,42 @@ footer {
     color: white;
     font-size: 1.5rem;
     transition: var(--transition);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.social-links a::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.social-links a i {
+    position: relative;
+    z-index: 1;
 }
 
 .social-links a:hover {
-    color: var(--primary-color);
+    color: white;
     transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.social-links a:hover::before {
+    opacity: 1;
 }
 
 .footer-bottom {
@@ -1223,7 +1374,13 @@ footer {
     padding-top: 2rem;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
     text-align: center;
-    color: var(--text-light);
+    position: relative;
+    z-index: 1;
+}
+
+.footer-bottom p {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.9rem;
 }
 
 /* Feature List */
