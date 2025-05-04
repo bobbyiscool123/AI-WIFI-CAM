@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="800" height="450" viewBox="0 0 800 450" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    .background {
+      fill: #1a1a2e;
+    }
+    .camera-frame {
+      fill: none;
+      stroke: #3498db;
+      stroke-width: 2;
+      rx: 8;
+      ry: 8;
+    }
+    .detection-box {
+      fill: none;
+      stroke: #2ecc71;
+      stroke-width: 2;
+      rx: 4;
+      ry: 4;
+      filter: url(#glow);
+    }
+    .detection-label {
+      fill: #2ecc71;
+      font-family: Arial, sans-serif;
+      font-size: 12px;
+      font-weight: bold;
+    }
+    .label-bg {
+      fill: #2ecc71;
+      rx: 4;
+      ry: 4;
+    }
+    .label-text {
+      fill: #000;
+      font-family: Arial, sans-serif;
+      font-size: 12px;
+      font-weight: bold;
+    }
+    .stats-panel {
+      fill: rgba(0, 0, 0, 0.7);
+      rx: 4;
+      ry: 4;
+    }
+    .stats-text {
+      fill: #fff;
+      font-family: monospace;
+      font-size: 12px;
+    }
+    .fps-text {
+      fill: #2ecc71;
+      font-family: monospace;
+      font-size: 12px;
+    }
+    .scan-line {
+      stroke: rgba(0, 255, 255, 0.7);
+      stroke-width: 2;
+      filter: url(#scan-glow);
+    }
+    .logo-text {
+      fill: #fff;
+      font-family: Arial, sans-serif;
+      font-size: 14px;
+      font-weight: bold;
+    }
+    .logo-highlight {
+      fill: #2ecc71;
+    }
+    .logo-bg {
+      fill: rgba(0, 0, 0, 0.7);
+      rx: 4;
+      ry: 4;
+    }
+    .grid line {
+      stroke: rgba(255, 255, 255, 0.1);
+      stroke-width: 1;
+    }
+    @keyframes scan {
+      from { transform: translateY(0); }
+      to { transform: translateY(450px); }
+    }
+    @keyframes pulse {
+      0% { stroke-opacity: 0.5; stroke-width: 2; }
+      50% { stroke-opacity: 1; stroke-width: 3; }
+      100% { stroke-opacity: 0.5; stroke-width: 2; }
+    }
+    @keyframes move {
+      0% { transform: translateX(0); }
+      50% { transform: translateX(100px); }
+      100% { transform: translateX(0); }
+    }
+    .scanning {
+      animation: scan 3s linear infinite;
+    }
+    .pulsing {
+      animation: pulse 2s infinite;
+    }
+    .moving {
+      animation: move 10s linear infinite;
+    }
+  </style>
+  
+  <defs>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+    <filter id="scan-glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="2" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+    <pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse">
+      <line x1="0" y1="0" x2="50" y2="0" class="grid" />
+      <line x1="0" y1="0" x2="0" y2="50" class="grid" />
+    </pattern>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="800" height="450" class="background" />
+  <rect width="800" height="450" fill="url(#grid)" />
+  
+  <!-- Camera Frame -->
+  <rect x="50" y="50" width="700" height="350" class="camera-frame" />
+  
+  <!-- Scan Line -->
+  <line x1="50" y1="0" x2="750" y2="0" class="scan-line scanning" />
+  
+  <!-- Detection Boxes -->
+  <g class="moving">
+    <rect x="300" y="150" width="80" height="200" class="detection-box pulsing" />
+    <rect x="300" y="125" width="60" height="20" class="label-bg" />
+    <text x="305" y="140" class="label-text">Person: 98%</text>
+  </g>
+  
+  <rect x="500" y="250" width="120" height="100" class="detection-box pulsing" />
+  <rect x="500" y="225" width="60" height="20" class="label-bg" />
+  <text x="505" y="240" class="label-text">Chair: 92%</text>
+  
+  <rect x="150" y="200" width="100" height="70" class="detection-box pulsing" />
+  <rect x="150" y="175" width="70" height="20" class="label-bg" />
+  <text x="155" y="190" class="label-text">Laptop: 95%</text>
+  
+  <!-- Stats Panel -->
+  <rect x="60" y="60" width="150" height="80" class="stats-panel" />
+  <text x="70" y="80" class="stats-text">Resolution: 800x450</text>
+  <text x="70" y="100" class="stats-text">Model: YOLOv4</text>
+  <text x="70" y="120" class="stats-text">Objects detected: 3</text>
+  <text x="70" y="140" class="fps-text">FPS: 24</text>
+  
+  <!-- Logo -->
+  <rect x="60" y="380" width="120" height="30" class="logo-bg" />
+  <text x="70" y="400" class="logo-text">AI <tspan class="logo-highlight">WiFi</tspan> CAM</text>
+  
+  <!-- Control Buttons (simplified) -->
+  <circle cx="720" cy="380" r="20" fill="rgba(0, 0, 0, 0.7)" />
+  <text x="713" y="385" fill="white" font-size="14">⚙️</text>
+  
+  <circle cx="670" cy="380" r="20" fill="rgba(0, 0, 0, 0.7)" />
+  <text x="663" y="385" fill="white" font-size="14">📷</text>
+  
+  <circle cx="620" cy="380" r="20" fill="rgba(0, 0, 0, 0.7)" />
+  <text x="613" y="385" fill="white" font-size="14">⏸️</text>
+</svg>

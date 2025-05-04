@@ -248,6 +248,19 @@ body {
     box-shadow: var(--shadow);
 }
 
+.demo-animation {
+    width: 100%;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+}
+
+.demo-svg {
+    width: 100%;
+    height: 450px;
+    display: block;
+    background-color: #1a1a2e;
+}
+
 .demo-gif {
     width: 100%;
     height: auto;
@@ -285,24 +298,6 @@ body {
 .demo-placeholder-content p {
     font-size: 1.2rem;
     opacity: 0.9;
-}
-
-.demo-note {
-    margin-top: 1.5rem;
-    padding: 0.5rem 1rem;
-    background-color: rgba(255, 255, 255, 0.2);
-    border-radius: var(--border-radius);
-    display: inline-block;
-}
-
-.demo-note small {
-    font-size: 0.9rem;
-}
-
-.demo-note i {
-    margin-right: 0.5rem;
-    font-size: 0.9rem;
-    animation: none;
 }
 
 @keyframes pulse {
