@@ -21,8 +21,8 @@
 #include "soc/rtc_cntl_reg.h"  // Disable brownout problems
 
 // WiFi credentials
-const char* ssid = "YOUR_WIFI_SSID";      // Replace with your WiFi network name
-const char* password = "YOUR_WIFI_PASSWORD";  // Replace with your WiFi password
+const char* ssid = "BOBBY WIFI_2.4G";      // Replace with your WiFi network name
+const char* password = "bobbyiscool1234";  // Replace with your WiFi password
 
 // WebSocket server settings
 WebSocketsServer webSocket = WebSocketsServer(8888);
