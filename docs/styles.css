@@ -202,16 +202,33 @@ body {
 
 /* Hero Section */
 .hero {
-    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    background: url('images/esp-cam-arduino-ide-lead-II.png') center/cover no-repeat;
     color: white;
-    padding: 3rem 0;
+    padding: 4rem 0;
     text-align: center;
+    position: relative;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.hero .container {
+    position: relative;
+    z-index: 1;
 }
 
 .hero h1 {
     font-size: 3rem;
     margin-bottom: 1rem;
     animation: fadeInDown 1s ease;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
 }
 
 .hero p {
@@ -220,6 +237,7 @@ body {
     margin: 0 auto 1.5rem;
     animation: fadeInUp 1s ease;
     font-weight: 300;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
 }
 
 .hero-buttons {
